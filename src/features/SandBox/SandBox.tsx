@@ -23,7 +23,7 @@ export const SandBox = () => {
 	const ActivePage = active.page;
 
 	return (
-		<div className='flex min-h-screen bg-white text-neutral-800'>
+		<div className='flex min-h-screen'>
 			<aside className='w-60 shrink-0 border-e border-neutral-200 bg-neutral-50 p-4 sticky top-0 h-screen overflow-y-auto'>
 				<p className='text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3'>Shared components</p>
 				<nav className='flex flex-col gap-1'>

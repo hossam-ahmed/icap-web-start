@@ -1,0 +1,55 @@
+/*
+ * Global scrollbar: thin, themed, smooth.
+ * Colors come from --scrollbar-* tokens in variables.css.
+ */
+
+@layer base {
+    /* Smooth scrolling for anchors / scrollTo, unless the user prefers reduced motion */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    /* Standard properties (Firefox, Chrome/Edge 121+) */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    /* Fallback for browsers without scrollbar-color (Safari) */
+    @supports not (scrollbar-color: auto) {
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb);
+            border-radius: 9999px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+            transition: background-color 0.2s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-thumb-hover);
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background-color: var(--scrollbar-thumb-active);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    }
+}

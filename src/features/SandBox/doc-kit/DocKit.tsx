@@ -64,7 +64,7 @@ export const CodeBlock = ({ code }: { code: string }) => {
 
 	return (
 		<div className='relative group'>
-			<pre className='bg-neutral-900 text-neutral-100 text-sm rounded-lg p-4 overflow-x-auto'>
+			<pre className='bg-neutral-900/75 text-neutral-100 text-sm rounded-lg p-4 overflow-x-auto'>
 				<code>{ code.trim() }</code>
 			</pre>
 			<button

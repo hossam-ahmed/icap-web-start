@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
+@utility text-color-* {
+    color: --value(--text-color-*);
+}
+@utility outline-color-* {
+    outline-color: --value(--outline-color-*);
+}
+
 @theme {
     /*typography*/
-    --font-default:  /*"Tajawal", */sans-serif;
-    --text-default: 15px;
-
-    --color-default: var(--color-neutral-800);
+    --font-default: sans-serif;
+    --text-color-default: var(--color-neutral-800);
+    --text-fs-default: 15px; /*default font size*/
 
     /*radius*/
     --radius-default: var(--radius-2xl);
 
     /*colors*/
-    --color-outline-primary-default: var(--color-primary-200);
-    --color-outline-secondary-default: var(--color-secondary-800);
+    --outline-color-primary-default: var(--color-primary-200);
+    --outline-color-secondary-default: var(--color-secondary-800);
+
+    /*scrollbar*/
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: var(--color-primary-200);
+    --scrollbar-thumb-hover: var(--color-primary-400);
+    --scrollbar-thumb-active: var(--color-primary);
 }
+
+
