@@ -17,6 +17,11 @@ const Login = lazy(() =>
 		default: module.Login
 	}))
 );
+const SandBox = lazy(() =>
+	import("@features/SandBox/SandBox.tsx").then(module => ({
+		default: module.SandBox
+	}))
+);
 
 /**
  * Wrap a lazily loaded element in a {@link Suspense} boundary so the router can
@@ -39,6 +44,9 @@ const router = createBrowserRouter([
 		children: [{
 			path   : ROUTES.home,
 			element: lazyRoute(<Home/>)
+		}, {
+			path   : ROUTES.sandbox,
+			element: lazyRoute(<SandBox/>)
 		}]
 	}
 ]);
