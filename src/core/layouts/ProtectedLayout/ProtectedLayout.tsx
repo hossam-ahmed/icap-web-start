@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "@shared/components/Header";
-import { SideMenu } from "@shared/components/SideMenu";
+import { Header } from "../Header";
+import { SideMenu } from "../SideMenu";
 
 export const ProtectedLayout = () => (
 	<div className='flex flex-col h-screen'>

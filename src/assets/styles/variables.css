@@ -4,8 +4,13 @@
     /*typography*/
     --font-default:  /*"Tajawal", */sans-serif;
     --text-default: 15px;
+
     --color-default: var(--color-neutral-800);
 
     /*radius*/
     --radius-default: var(--radius-2xl);
+
+    /*colors*/
+    --color-outline-primary-default: var(--color-primary-200);
+    --color-outline-secondary-default: var(--color-secondary-800);
 }

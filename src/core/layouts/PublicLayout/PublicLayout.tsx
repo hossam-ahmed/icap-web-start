@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "@shared/components/Header";
+import { Header } from "../Header";
 
 /** Layout for unauthenticated pages (e.g. login): header only. */
 export const PublicLayout = () => (

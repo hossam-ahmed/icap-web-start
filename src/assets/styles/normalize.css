@@ -8,6 +8,20 @@
     }
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url("../images/Background.png") no-repeat center;
+    background-size: cover;
+}
+
+html[dir="ltr"] body::before {
+    transform: scaleX(-1);
+}
+
 a, button {
     cursor: pointer;
 
