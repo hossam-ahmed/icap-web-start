@@ -3,6 +3,8 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ROUTES } from "./paths.ts";
 import { ProtectedRoute } from "@core/ProtectedRoute/ProtectedRoute.tsx";
+import { PublicLayout } from "@core/layouts/PublicLayout/PublicLayout.tsx";
+import { ProtectedLayout } from "@core/layouts/ProtectedLayout/ProtectedLayout.tsx";
 
 /**
  * Lazily loaded pages.
@@ -34,19 +36,26 @@ const lazyRoute = (element: ReactElement): ReactElement => (
 );
 
 const router = createBrowserRouter([
-	// Public routes
+	// Public routes: header only
 	{
-		path   : ROUTES.login,
-		element: lazyRoute(<Login/>)
+		element : <PublicLayout/>,
+		children: [{
+			path   : ROUTES.login,
+			element: lazyRoute(<Login/>)
+		}]
 	},
+	// Protected routes: auth check, then header + side menu
 	{
 		element : <ProtectedRoute/>,
 		children: [{
-			path   : ROUTES.home,
-			element: lazyRoute(<Home/>)
-		}, {
-			path   : ROUTES.sandbox,
-			element: lazyRoute(<SandBox/>)
+			element : <ProtectedLayout/>,
+			children: [{
+				path   : ROUTES.home,
+				element: lazyRoute(<Home/>)
+			}, {
+				path   : ROUTES.sandbox,
+				element: lazyRoute(<SandBox/>)
+			}]
 		}]
 	}
 ]);

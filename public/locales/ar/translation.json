@@ -1,0 +1,37 @@
+{
+  "app": {
+    "title": "آي كاب - ويب"
+  },
+  "home": {
+    "welcome": "مرحبًا بك في آي كاب - ويب",
+    "greeting": "أهلًا، {{name}}",
+    "dashboard": "لوحة التحكم الخاصة بك",
+    "notifications_zero": "ليس لديك إشعارات جديدة",
+    "notifications_one": "لديك إشعار جديد واحد",
+    "notifications_two": "لديك إشعاران جديدان",
+    "notifications_few": "لديك {{count}} إشعارات جديدة",
+    "notifications_many": "لديك {{count}} إشعارًا جديدًا",
+    "notifications_other": "لديك {{count}} إشعار جديد",
+    "terms": "بالمتابعة فإنك توافق على <bold>شروط الخدمة</bold>."
+  },
+  "language": {
+    "label": "اللغة",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loading": "جارٍ التحميل..."
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "sandbox": "بيئة التجربة"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "user": "مستخدم"
+  }
+}

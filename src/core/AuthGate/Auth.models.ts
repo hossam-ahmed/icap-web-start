@@ -31,5 +31,6 @@ export type UseAuthResult = {
 	accessToken: string | null;
 	isAuthenticated: boolean;
 	login: (credentials: LoginCredentials) => Promise<CurrentUser>;
-	logout: () => void;
+	/** Ends the session. Local state is always cleared, even if the API call fails. */
+	logout: () => Promise<void>;
 };

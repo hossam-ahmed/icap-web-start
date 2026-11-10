@@ -16,6 +16,10 @@ a, button {
     }
 }
 
+a, button, section, select, input, textarea {
+    @apply rounded-default;
+}
+
 h1 {
     font-size: var(--text-3xl);
     font-weight: var(--font-weight-bold);

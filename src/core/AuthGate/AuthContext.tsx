@@ -6,6 +6,19 @@ import type { CurrentUser, LoginCredentials, LoginResponse, UseAuthResult } from
 
 export const AuthContext = createContext<UseAuthResult | undefined>(undefined);
 
+const TOKEN_KEY = "accessToken";
+const USER_KEY = "currentUser";
+
+/** Restore the saved user so the header can show the name after a page refresh. */
+const readStoredUser = (): CurrentUser | null => {
+	try {
+		const raw = localStorage.getItem(USER_KEY);
+		return raw ? JSON.parse(raw) as CurrentUser : null;
+	} catch {
+		return null;
+	}
+};
+
 /**
  * Internal factory that builds the auth state and actions.
  *
@@ -13,8 +26,8 @@ export const AuthContext = createContext<UseAuthResult | undefined>(undefined);
  * accepts any non-empty credentials and returns a fake user and token.
  */
 const useAuthState = (): UseAuthResult => {
-	const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
-	const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem("accessToken"));
+	const [currentUser, setCurrentUser] = useState<CurrentUser | null>(readStoredUser);
+	const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem(TOKEN_KEY));
 	const api = useApi();
 
 	const login = useCallback((credentials: LoginCredentials): Promise<CurrentUser> => {
@@ -24,21 +37,30 @@ const useAuthState = (): UseAuthResult => {
 		}, credentials).then(({ user, accessToken: token }) => {
 			setCurrentUser(user);
 			setAccessToken(token);
-			localStorage.setItem("accessToken", token);
+			localStorage.setItem(TOKEN_KEY, token);
+			localStorage.setItem(USER_KEY, JSON.stringify(user));
 
 			return user;
 		})
 	}, []);
 
-	const logout = useCallback(() => {
+	const logout = useCallback((): Promise<void> => {
+		const clearSession = () => {
+			setCurrentUser(null);
+			setAccessToken(null);
+			localStorage.removeItem(TOKEN_KEY);
+			localStorage.removeItem(USER_KEY);
+		};
+
+		// Clear the local session whether or not the server call succeeds,
+		// so the user is never stuck logged in.
 		return api.post({
 			metadata: API_METADATA.auth,
 			apiUrl  : "logout"
-		}).then(() => {
-			setCurrentUser(null);
-			setAccessToken(null);
-			localStorage.removeItem("accessToken");
-		});
+		})
+			.then(() => undefined)
+			.catch(error => console.warn("[auth] logout request failed", error))
+			.finally(clearSession);
 	}, []);
 
 	return useMemo<UseAuthResult>(() => ({

@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "iCAP - WEB"
+  },
+  "home": {
+    "welcome": "Welcome to iCAP - WEB",
+    "greeting": "Hello, {{name}}",
+    "dashboard": "Your Dashboard",
+    "notifications_one": "You have {{count}} new notification",
+    "notifications_other": "You have {{count}} new notifications",
+    "terms": "By continuing you agree to our <bold>Terms of Service</bold>."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "home": "Home",
+    "sandbox": "Sandbox"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "user": "User"
+  }
+}
