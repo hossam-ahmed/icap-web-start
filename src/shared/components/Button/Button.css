@@ -4,7 +4,7 @@
 
 @layer components {
     .icap-button {
-        @apply rounded-default p-3 transition-all;
+        @apply rounded-default p-3 transition-all min-w-[100px];
 
         &.primary {
             @apply bg-primary disabled:bg-primary-200 hover:bg-primary-600;

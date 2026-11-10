@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+    .icap-loader {
+        @apply z-999;
+    }
+
+    .loader-overlay {
+        @apply bg-black opacity-30 fixed w-full h-full left-0 top-0;
+    }
+
+    .icap-loader-content {
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px];
+    }
+}

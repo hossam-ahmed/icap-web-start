@@ -9,7 +9,7 @@ export type ButtonProps = ComponentProps<"button"> & {
 export const Button = ({
 	type = "button",
 	className,
-	variant,
+	variant = 'primary',
 	children,
 	...props
 }: ButtonProps) => {

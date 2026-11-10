@@ -2,13 +2,9 @@ import { useCallback, useMemo } from "react";
 import type { AxiosInstance, AxiosResponse } from "axios";
 import axios from "axios";
 import type { APIConfig, UseApiResult } from "./ApiConfig.ts";
-import { env } from "../config/env.ts";
-import { delay } from "../globals/utils.ts";
-import { useLoader } from "../shared/Loader/useLoader.tsx";
-
-const computeOrigin = (): string => {
-	return window.location?.origin;
-}
+import { env } from "@core/config/env.ts";
+import { useLoader } from "@shared/components/Loader";
+import { computeOrigin, delay } from "@core/globals/Utils.ts";
 
 const generateRequestUrl = (config: APIConfig): string => {
 	// get computed domain
@@ -29,10 +25,10 @@ const generateRequestUrl = (config: APIConfig): string => {
 	// get computed apiUrl
 	const apiUrl: string | undefined = config.apiUrl;
 
-	const leadVersion: boolean = config.leadVersion ?? !!env.apiConfig?.leadVersion;
+	/*const leadVersion: boolean = config.leadVersion ?? !!env.apiConfig?.leadVersion;*/
 
-	const urlSegments = leadVersion ?
-	                    [origin, microserviceBaseurl, apiBaseUrl, apiVersion, controller, apiUrl] :
+	const urlSegments = /*leadVersion ?
+	                    [origin, microserviceBaseurl, apiBaseUrl, apiVersion, controller, apiUrl] :*/
 	                    [origin, microserviceBaseurl, apiBaseUrl, controller, apiVersion, apiUrl];
 
 	// compose full service url

@@ -1,19 +1,23 @@
 import "./App.css";
-import { Button } from "./shared/Button/Button.tsx";
+import { IcapClientProvider } from "@core/IcapClient/IcapClientProvider.tsx";
+import { Loader, LoaderProvider } from "@shared/components/Loader";
+import { AuthProvider } from "@core/AuthGate/AuthContext.tsx";
+import { AuthGate } from "@core/AuthGate/AuthGate.tsx";
+import { ICapRouter } from "@core/IcapRouter/ICapRouter.tsx";
 
 function App() {
 
-  return (
-    <>
-      <span className='dev-content'>Welcome to iCAP - WEB</span>
-
-      <br />
-      Buttons
-      <Button variant="primary" className='outlined' disabled>
-        Click me!
-      </Button>
-    </>
-  )
+	return (
+		<IcapClientProvider>
+			<LoaderProvider>
+				<AuthProvider>
+					<Loader/>
+					<ICapRouter />
+					<AuthGate/>
+				</AuthProvider>
+			</LoaderProvider>
+		</IcapClientProvider>
+	)
 }
 
-export default App
+export default App;

@@ -7,7 +7,7 @@ import { QueryClient } from "@tanstack/react-query";
  * mutation. Created once here (outside React), so the same instance is shared
  * across the tree and survives re-renders.
  */
-export const queryClient = new QueryClient({
+export const QueryClientInstance = new QueryClient({
 	defaultOptions: {
 		queries  : {
 			// Data is considered fresh for a minute before a background refetch is

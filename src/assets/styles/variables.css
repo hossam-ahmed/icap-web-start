@@ -4,6 +4,7 @@
     /*typography*/
     --font-default:  /*"Tajawal", */sans-serif;
     --text-default: 15px;
+    --color-default: var(--color-neutral-800);
 
     /*radius*/
     --radius-default: var(--radius-2xl);

@@ -10,7 +10,23 @@
 
 a, button {
     cursor: pointer;
+
     &:disabled {
         cursor: auto;
     }
+}
+
+h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+}
+
+h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+}
+
+h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-normal);
 }

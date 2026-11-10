@@ -1,0 +1,52 @@
+import type { ReactElement } from "react";
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ROUTES } from "./paths.ts";
+import { ProtectedRoute } from "@core/ProtectedRoute/ProtectedRoute.tsx";
+
+/**
+ * Lazily loaded pages.
+ *
+ * Each page lives in its own bundle chunk and is only fetched when its route
+ * is first visited. `Home` is a named export, so we remap it to the `default`
+ * shape that {@link lazy} expects.
+ */
+const Home = lazy(() => import("@features/Home/Home.tsx").then(module => ({ default: module.Home })));
+const Login = lazy(() =>
+	import("@features/Login/Login.tsx").then(module => ({
+		default: module.Login
+	}))
+);
+
+/**
+ * Wrap a lazily loaded element in a {@link Suspense} boundary so the router can
+ * render a fallback while the page chunk is downloading.
+ */
+const lazyRoute = (element: ReactElement): ReactElement => (
+	<Suspense fallback={ <p className='p-3'>Loading…</p> }>
+		{ element }
+	</Suspense>
+);
+
+const router = createBrowserRouter([
+	// Public routes
+	{
+		path   : ROUTES.login,
+		element: lazyRoute(<Login/>)
+	},
+	{
+		element : <ProtectedRoute/>,
+		children: [{
+			path   : ROUTES.home,
+			element: lazyRoute(<Home/>)
+		}]
+	}
+]);
+
+/**
+ * Application router.
+ *
+ * Owns the route table and renders the active page. Mount this once near the
+ * root of the tree (see `App`).
+ */
+export const ICapRouter = () => <RouterProvider router={ router }/>;

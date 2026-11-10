@@ -1,4 +1,4 @@
-export type ApiControllers = 'serviceA';
+export type ApiControllers = 'auth';
 
 export type APIMetadata = {
 	microserviceBaseurl: string;
@@ -9,8 +9,8 @@ export type APIMetadataType = {
 };
 
 export const API_METADATA: APIMetadataType = {
-	serviceA: {
-		microserviceBaseurl: "service-a-svc",
-		controller         : "ServiceA"
+	auth: {
+		microserviceBaseurl: "auth-svc",
+		controller         : "login"
 	}
 };
