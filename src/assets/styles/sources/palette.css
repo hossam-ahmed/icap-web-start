@@ -9,6 +9,16 @@
   --color-primary-700: rgb(238, 203, 125);
   --color-primary-800: rgb(235, 197, 113);
   --color-primary-900: rgb(233, 191, 102);
+  --color-secondary-50: rgb(238, 222, 211);
+  --color-secondary-100: rgb(230, 206, 190);
+  --color-secondary-200: rgb(213, 174, 148);
+  --color-secondary-300: rgb(197, 142, 107);
+  --color-secondary-400: rgb(180, 111, 65);
+  --color-secondary: #a44f17;
+  --color-secondary-600: rgb(153, 69, 19);
+  --color-secondary-700: rgb(143, 59, 15);
+  --color-secondary-800: rgb(132, 50, 12);
+  --color-secondary-900: rgb(122, 40, 8);
 }
 
 /*# sourceMappingURL=palette.css.map */

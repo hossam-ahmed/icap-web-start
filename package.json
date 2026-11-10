@@ -1,16 +1,16 @@
 {
-  "name": "react-handson",
+  "name": "icap-web-start",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run generate-icons\" \"vite\"",
-    "mock": "concurrently \"npm run generate-icons\" \"nodemon mock-server/index.ts\" \"vite --mode mock\"",
+    "dev": "concurrently \"npm run generate-icons\" \"npm run watch-palette\" \"vite\"",
+    "mock": "concurrently \"npm run generate-icons\" \"npm run watch-palette\" \"nodemon mock-server/index.ts\" \"vite --mode mock\"",
     "mock-server": "nodemon mock-server/index.ts",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "generate-palette": "sass --watch src/assets/styles/sources/palette.scss:src/assets/styles/sources/palette.css",
+    "watch-palette": "sass --watch src/assets/styles/sources/palette.scss:src/assets/styles/sources/palette.css",
     "generate-icons": "ts-node tools/generate-icons.ts"
   },
   "dependencies": {
