@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    /*typography*/
+    --font-default:  /*"Tajawal", */sans-serif;
+    --text-default: 15px;
+
+    /*radius*/
+    --radius-default: var(--radius-2xl);
+}

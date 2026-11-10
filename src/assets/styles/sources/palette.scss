@@ -1,0 +1,92 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+
+// configs
+$shadowsCount: [50,100,200,300,400,500,600,700,800,900];
+// Max mix amount toward white (lightest shade) / toward the dark tone (darkest shade).
+$max-tint: 90%;
+$max-shade: 90%;
+
+// Material-style dark tone: the base color multiplied by itself (per RGB channel).
+@function _multiply-self($color) {
+  $r: color.channel($color, "red", $space: rgb);
+  $g: color.channel($color, "green", $space: rgb);
+  $b: color.channel($color, "blue", $space: rgb);
+  $outR: math.div($r * $r, 255);
+  $outG: math.div($g * $g, 255);
+  $outB: math.div($b * $b, 255);
+  @return rgb($outR, $outG, $outB);
+}
+
+// Rounds RGB channels so the output compiles to clean hex values.
+@function _round($color) {
+  $r: math.round(color.channel($color, "red", $space: rgb));
+  $g: math.round(color.channel($color, "green", $space: rgb));
+  $b: math.round(color.channel($color, "blue", $space: rgb));
+  @return rgb($r, $g, $b);
+}
+
+/// Generates a single Material-style shade of `$base`.
+/// Shades lighter than `$base-shade` are mixed with white,
+/// darker ones are mixed with the base multiplied by itself.
+/// @param {Color}  $base        - the base color (represents `$base-shade`)
+/// @param {Number} $shade       - target shade (e.g. 50 … 900)
+/// @param {Number} $base-shade  - which shade the base color represents (default 500)
+@function shade-color($base, $shade, $base-shade: 500) {
+  @if $shade == $base-shade {
+    @return $base;
+  }
+
+  @if $shade < $base-shade {
+    $ratio: math.div($base-shade - $shade, $base-shade);
+    @return _round(color.mix(white, $base, $ratio * $max-tint));
+  }
+
+  $ratio: math.div($shade - $base-shade, 1000 - $base-shade);
+  @return _round(color.mix(_multiply-self($base), $base, $ratio * $max-shade));
+}
+
+/// Generates a palette map `(shade: color, ...)` from a base color.
+/// @param {Color} $base        - the base color
+/// @param {List}  $shades      - list of shade numbers (default `$shadowsCount`)
+/// @param {Number} $base-shade - which shade the base color represents (default 500)
+/// @return {Map}
+@function generate-shades($base, $shades: $shadowsCount, $base-shade: 500) {
+  $palette: ();
+  @each $shade in $shades {
+    $palette: map.set($palette, $shade, shade-color($base, $shade, $base-shade));
+  }
+  @return $palette;
+}
+
+@mixin generate-palette-utility() {
+  @theme {
+    @each $name, $base in $palettes {
+      @each $shade, $color in generate-shades($base) {
+        @if $shade == 500 {
+          --color-#{$name}: #{$color};
+        } @else {
+          --color-#{$name}-#{$shade}: #{$color};
+        }
+      }
+    }
+  }
+}
+
+///////////// palette /////////////
+
+// primary
+$primary-base: #f2d793;
+
+// secondary
+$secondary-base: #f2d774;
+$palettes: (
+        "primary": $primary-base
+);
+
+
+///////////// Execute /////////////
+@include generate-palette-utility();
+

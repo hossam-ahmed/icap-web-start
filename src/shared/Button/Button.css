@@ -1,0 +1,17 @@
+@reference "src/assets/styles/index.css";
+
+@custom-variant outlined (&:where(.outlined *));
+
+@layer components {
+    .icap-button {
+        @apply rounded-default p-3 transition-all;
+
+        &.primary {
+            @apply bg-primary disabled:bg-primary-200 hover:bg-primary-600;
+        }
+
+        &.secondary {
+            @apply bg-primary disabled:bg-primary-200 hover:bg-primary-600;
+        }
+    }
+}

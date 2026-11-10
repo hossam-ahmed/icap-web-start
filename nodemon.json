@@ -1,0 +1,12 @@
+{
+  "restartable": "rs",
+  "exitcrash": true,
+  "watch": ["mock-server"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json,ts",
+  "execMap": {
+    "ts": "tsx"
+  }
+}

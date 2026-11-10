@@ -1,0 +1,10 @@
+/*libs*/
+@import "tailwindcss";
+
+/*utils*/
+@import "./normalize.css";
+@import "./variables.css";
+@import "./sources/palette.css";
+
+/*components*/
+@import "./components/table.css";
