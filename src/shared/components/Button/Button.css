@@ -7,11 +7,11 @@
         @apply p-3 transition-colors min-w-[100px] outline-0;
 
         &.primary {
-            @apply bg-primary text-primary-50 disabled:bg-primary-200 hover:bg-primary-700 active:bg-primary-900 outline-color-primary-default focus:outline-2;
+            @apply bg-primary text-color-default disabled:bg-primary-200 hover:bg-primary-700 active:bg-primary-900 outline-color-primary-default focus:outline-3;
         }
 
         &.secondary {
-            @apply bg-secondary text-default disabled:bg-secondary-200 hover:bg-secondary-700 active:bg-secondary-900 outline-color-secondary-default focus:outline-2;
+            @apply bg-secondary text-secondary-100 disabled:bg-secondary-200 hover:bg-secondary-700 active:bg-secondary-900 outline-color-secondary-default focus:outline-3;
 
         }
     }

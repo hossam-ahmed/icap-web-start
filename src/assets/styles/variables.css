@@ -17,8 +17,8 @@
     --radius-default: var(--radius-2xl);
 
     /*colors*/
-    --outline-color-primary-default: var(--color-primary-200);
-    --outline-color-secondary-default: var(--color-secondary-800);
+    --outline-color-primary-default: var(--color-primary-900);
+    --outline-color-secondary-default: var(--color-secondary-200);
 
     /*scrollbar*/
     --scrollbar-track: transparent;

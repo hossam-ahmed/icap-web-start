@@ -4,9 +4,9 @@
 
     background: linear-gradient(
             to bottom,
-            rgba(172, 100, 51, 0.05),
-            rgba(172, 100, 51, 0.95),
-            rgba(172, 100, 51, 0.05)
+            color-mix(in srgb, var(--color-secondary-900) 15%, transparent),
+            color-mix(in srgb, var(--color-secondary-300) 95%, transparent),
+            color-mix(in srgb, var(--color-secondary-900) 15%, transparent)
     );
 
     mask-image: linear-gradient(

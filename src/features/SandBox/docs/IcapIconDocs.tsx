@@ -102,11 +102,11 @@ export const IcapIconDocs = () => (
 			<Example
 				title='Icon inside a Button'
 				code={ `
-<Button className="flex items-center gap-2 text-white">
+<Button className="flex items-center gap-2">
   <IcapIcon icon="loader" size="18px" />
   Refresh
 </Button>` }>
-				<Button className='flex items-center justify-center gap-2 text-white'>
+				<Button className='flex items-center justify-center gap-2'>
 					<IcapIcon icon='loader' size='18px'/>
 					Refresh
 				</Button>

@@ -70,7 +70,7 @@ const save = async () => {
     hideLoader();
   }
 };` }>
-					<Button className='text-white' onClick={ () => runTask(1500) }>Show loader for 1.5s</Button>
+					<Button onClick={ () => runTask(1500) }>Show loader for 1.5s</Button>
 				</Example>
 
 				<Example
@@ -79,7 +79,7 @@ const save = async () => {
 					code={ `
 runTask(800);
 runTask(2000); // loader hides after ~2s, not 0.8s` }>
-					<Button className='text-white' onClick={ runParallel }>Run 2 tasks in parallel</Button>
+					<Button onClick={ runParallel }>Run 2 tasks in parallel</Button>
 				</Example>
 
 				<Example

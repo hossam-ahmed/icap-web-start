@@ -1,10 +1,6 @@
 import type { ComponentProps, CSSProperties } from "react";
+import type { ICapIconName } from "@core/models/icap-icons.generated.models.ts";
 
-/**
- * Every image under `src/assets`, resolved by Vite to its final public URL.
- * Keyed by path relative to `src/assets`, e.g. `icons/cart.svg`.
- * Only URL strings are bundled (not file contents), so this stays cheap.
- */
 const assetUrls: Record<string, string> = Object.fromEntries(
 	Object.entries(
 		import.meta.glob<string>("/src/assets/**/*.{svg,png,jpg,jpeg,webp,gif}", {
@@ -15,12 +11,9 @@ const assetUrls: Record<string, string> = Object.fromEntries(
 	).map(([path, url]) => [path.replace("/src/assets/", ""), url])
 );
 
-/** Known icon names in `src/assets/icons`; any other string is still accepted. */
-export type IcapIconName = "cart" | "loader" | (string & {});
-
 export type IcapIconProps = Omit<ComponentProps<"span">, "color"> & {
 	/** Icon file name (without extension) inside `parentPath`. */
-	icon: IcapIconName;
+	icon: ICapIconName;
 	/** When true, no icon styling is applied — renders a plain span. */
 	keepDefault?: boolean;
 	/** Folder under `src/assets` that holds the icon. */

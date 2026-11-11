@@ -92,8 +92,8 @@ const [count, setCount] = useState(0);
 				<Example
 					title='Extra classes'
 					description='className is appended, so Tailwind utilities can extend the base styles.'
-					code={ `<Button className="w-full text-white font-semibold">Full width</Button>` }>
-					<Button className='w-full text-white font-semibold'>Full width</Button>
+					code={ `<Button className="w-full font-semibold">Full width</Button>` }>
+					<Button className='w-full font-semibold'>Full width</Button>
 				</Example>
 			</DocSection>
 
