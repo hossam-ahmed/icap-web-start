@@ -1,0 +1,92 @@
+@reference "@styles/tailwind-util.css";
+
+@layer components {
+    .icap-checkbox {
+        @apply inline-flex items-center gap-2 cursor-pointer select-none;
+
+        .checkbox-control {
+            @apply relative inline-flex shrink-0 size-5;
+        }
+
+        .checkbox-input {
+            @apply appearance-none m-0 size-full cursor-pointer rounded-sm border-2 bg-white outline-0;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+
+            &:focus-visible {
+                @apply outline-3;
+            }
+        }
+
+        .checkbox-check {
+            @apply absolute inset-0 m-auto size-4 pointer-events-none;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .checkbox-input:checked + .checkbox-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &.primary {
+            .checkbox-input {
+                @apply border-primary-700 outline-color-primary-default;
+
+                &:not(:disabled):hover {
+                    @apply border-primary-900;
+                }
+
+                &:checked {
+                    @apply bg-primary border-(--color-primary);
+                }
+
+                &:checked:not(:disabled):hover {
+                    @apply bg-primary-700 border-primary-700;
+                }
+            }
+
+            .checkbox-check {
+                @apply text-neutral-800;
+            }
+        }
+
+        &.secondary {
+            .checkbox-input {
+                @apply border-secondary-300 outline-color-secondary-default;
+
+                &:not(:disabled):hover {
+                    @apply border-secondary;
+                }
+
+                &:checked {
+                    @apply bg-secondary border-secondary;
+                }
+
+                &:checked:not(:disabled):hover {
+                    @apply bg-secondary-700 border-secondary-700;
+                }
+            }
+
+            .checkbox-check {
+                @apply text-secondary-100;
+            }
+        }
+
+        /* Disabled: driven by the native attribute */
+        &:has(.checkbox-input:disabled) {
+            @apply cursor-not-allowed opacity-50;
+
+            .checkbox-input {
+                @apply cursor-not-allowed;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-checkbox .checkbox-input,
+        .icap-checkbox .checkbox-check {
+            transition: none;
+        }
+    }
+}

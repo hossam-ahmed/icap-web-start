@@ -7,45 +7,46 @@
         line-height: 1;
         @apply text-fs-default text-color-default;
     }
-}
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: url("../images/Background.png") no-repeat center;
-    background-size: cover;
-}
-
-html[dir="ltr"] body::before {
-    transform: scaleX(-1);
-}
-
-a, button {
-    cursor: pointer;
-
-    &:disabled {
-        cursor: auto;
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: url("../images/Background.png") no-repeat center;
+        background-size: cover;
     }
-}
 
-a, button, section, select, input, textarea {
-    @apply rounded-default;
-}
+    html[dir="ltr"] body::before {
+        transform: scaleX(-1);
+    }
 
-h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--font-weight-bold);
-}
+    a, button {
+        cursor: pointer;
 
-h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-}
+        &:disabled {
+            cursor: auto;
+        }
+    }
 
-h3 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-normal);
+    a, button, section, select, input[type='text'], textarea {
+        @apply rounded-default;
+    }
+
+    h1 {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-weight-bold);
+    }
+
+    h2 {
+        font-size: var(--text-2xl);
+        font-weight: var(--font-weight-medium);
+    }
+
+    h3 {
+        font-size: var(--text-xl);
+        font-weight: var(--font-weight-normal);
+    }
+
 }

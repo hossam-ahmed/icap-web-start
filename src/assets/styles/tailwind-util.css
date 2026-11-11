@@ -1,0 +1,6 @@
+/*libs*/
+@import "tailwindcss";
+
+/*utils*/
+@import "./variables.css";
+@import "./sources/palette.css";

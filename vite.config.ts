@@ -13,7 +13,8 @@ export default defineConfig({
 			'@features': fileURLToPath(new URL('./src/features', import.meta.url)),
 			'@shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
 			'@core': fileURLToPath(new URL('./src/core', import.meta.url)),
-			'@assets': fileURLToPath(new URL('./src/assets', import.meta.url))
+			'@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+			'@styles': fileURLToPath(new URL('./src/assets/styles', import.meta.url))
 		}
 	},
 	mode   : ''

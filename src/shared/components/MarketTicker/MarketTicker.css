@@ -1,0 +1,35 @@
+@reference "@styles/tailwind-util.css";
+
+@layer components {
+    .icap-market-ticker {
+        @apply bg-neutral-100;
+
+        &.transparent {
+            @apply bg-transparent;
+        }
+
+        &.trend-up {
+            &:not(.transparent) {
+                @apply bg-success-50;
+            }
+
+            .ticker-arrow, .ticker-amount, .ticker-sign {
+                @apply text-success;
+            }
+        }
+
+        &.trend-down {
+            &:not(.transparent) {
+                @apply bg-error-50;
+            }
+
+            .ticker-arrow, .ticker-amount, .ticker-sign {
+                @apply text-error;
+            }
+
+            .ticker-arrow {
+                @apply scale-y-[-1];
+            }
+        }
+    }
+}

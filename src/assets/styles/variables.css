@@ -6,6 +6,9 @@
 @utility outline-color-* {
     outline-color: --value(--outline-color-*);
 }
+@utility border-color-* {
+    border-color: --value(--border-color-*);
+}
 
 @theme {
     /*typography*/
@@ -14,13 +17,15 @@
     --font-default: var(--font-rtl);
     --text-color-default: var(--color-neutral-800);
     --text-fs-default: 15px; /*default font size*/
-
     /*radius*/
     --radius-default: var(--radius-2xl);
 
-    /*colors*/
-    --outline-color-primary-default: var(--color-primary-900);
+    /*outline color*/
+    --outline-color-primary-default: var(--color-primary-200);
     --outline-color-secondary-default: var(--color-secondary-200);
+
+    /*border color*/
+    --border-color-primary: #E8E2DB;
 
     /*scrollbar*/
     --scrollbar-track: transparent;
@@ -28,7 +33,6 @@
     --scrollbar-thumb-hover: var(--color-primary-400);
     --scrollbar-thumb-active: var(--color-primary);
 }
-
 
 
 /* Switch the default font by document direction (dir is set in i18n.ts) */

@@ -1,12 +1,10 @@
-@reference "tailwindcss";
-@reference "src/assets/styles/variables.css";
-@reference "src/assets/styles/sources/palette.css";
+@reference "@styles/tailwind-util.css";
 
 @custom-variant outlined (&:where(.outlined *));
 
 @layer components {
     .icap-button {
-        @apply p-3 min-w-[100px] outline-0 relative isolate overflow-hidden;
+        @apply p-3 min-w-[100px] outline-0 relative rounded-default isolate overflow-hidden;
 
         /* Shadow tint; each variant sets its own */
         --btn-glow: var(--color-primary);

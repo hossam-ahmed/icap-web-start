@@ -1,8 +1,11 @@
 import type { ComponentType } from "react";
 import { ButtonDocs } from "./ButtonDocs.tsx";
 import { DividerDocs } from "./DividerDocs.tsx";
+import { IcapCheckboxDocs } from "./IcapCheckboxDocs.tsx";
 import { IcapIconDocs } from "./IcapIconDocs.tsx";
+import { IcapRadioDocs } from "./IcapRadioDocs.tsx";
 import { LoaderDocs } from "./LoaderDocs.tsx";
+import { MarketTickerDocs } from "./MarketTickerDocs.tsx";
 
 export type ComponentDocEntry = {
 	/** URL hash / unique key. */
@@ -16,6 +19,9 @@ export type ComponentDocEntry = {
 export const componentDocs: ComponentDocEntry[] = [
 	{ id: "button", name: "Button", page: ButtonDocs },
 	{ id: "divider", name: "Divider", page: DividerDocs },
+	{ id: "icap-checkbox", name: "IcapCheckbox", page: IcapCheckboxDocs },
 	{ id: "icap-icon", name: "IcapIcon", page: IcapIconDocs },
-	{ id: "loader", name: "Loader", page: LoaderDocs }
+	{ id: "icap-radio", name: "IcapRadio", page: IcapRadioDocs },
+	{ id: "loader", name: "Loader", page: LoaderDocs },
+	{ id: "market-ticker", name: "MarketTicker", page: MarketTickerDocs }
 ];
