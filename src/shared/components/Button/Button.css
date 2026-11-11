@@ -1,19 +1,78 @@
-@reference "src/assets/styles/index.css";
+@reference "tailwindcss";
+@reference "src/assets/styles/variables.css";
+@reference "src/assets/styles/sources/palette.css";
 
 @custom-variant outlined (&:where(.outlined *));
 
 @layer components {
     .icap-button {
-        @apply p-3 transition-colors min-w-[100px] outline-0;
+        @apply p-3 min-w-[100px] outline-0 relative isolate overflow-hidden;
+
+        /* Shadow tint; each variant sets its own */
+        --btn-glow: var(--color-primary);
+
+        /* outline-color is intentionally NOT transitioned (avoids a flash on focus) */
+        transition: background-color 0.3s ease,
+                    color 0.3s ease,
+                    box-shadow 0.3s ease,
+                    transform 0.2s ease;
+
+        /* Light sheen that sweeps across on hover (sits above the background, below the content) */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(
+                    120deg,
+                    transparent 30%,
+                    rgb(255 255 255 / 0.25) 50%,
+                    transparent 70%
+            );
+            transform: translateX(-100%);
+        }
+
+        &:not(:disabled):hover {
+            /*transform: translateY(-2px);*/
+            box-shadow: 0 6px 16px -4px color-mix(in srgb, var(--btn-glow) 55%, transparent);
+
+            &::before {
+                transform: translateX(100%);
+                transition: transform 0.6s ease;
+            }
+        }
+
+        &:not(:disabled):active {
+            /*transform: translateY(0);*/
+            box-shadow: 0 2px 6px -2px color-mix(in srgb, var(--btn-glow) 45%, transparent);
+            transition-duration: 0.1s;
+        }
 
         &.primary {
+            --btn-glow: var(--color-primary);
             @apply bg-primary text-color-default disabled:bg-primary-200 hover:bg-primary-700 active:bg-primary-900 outline-color-primary-default focus:outline-3;
         }
 
         &.secondary {
+            --btn-glow: var(--color-secondary);
             @apply bg-secondary text-secondary-100 disabled:bg-secondary-200 hover:bg-secondary-700 active:bg-secondary-900 outline-color-secondary-default focus:outline-3;
-
         }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        .icap-button,
+        .icap-button::before {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .icap-button:not(:disabled):hover,
+        .icap-button:not(:disabled):active {
+            transform: none;
+        }
+
+        .icap-button::before {
+            display: none;
+        }
+    }
 }

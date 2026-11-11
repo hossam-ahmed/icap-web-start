@@ -34,12 +34,6 @@ const iconProps: PropDoc[] = [
 		description: "File extension (svg, png, jpg, jpeg, webp, gif)."
 	},
 	{
-		name       : "keepDefault",
-		type       : "boolean",
-		default    : "false",
-		description: "Skip all icon styling and render a plain span (bring your own styles)."
-	},
-	{
 		name       : "aria-label",
 		type       : "string",
 		description: <>When set, the icon gets <InlineCode>role="img"</InlineCode>; otherwise it is treated as decorative (<InlineCode>aria-hidden</InlineCode>).</>

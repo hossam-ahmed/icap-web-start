@@ -1,5 +1,5 @@
 import type { ComponentProps, CSSProperties } from "react";
-import type { ICapIconName } from "@core/models/icap-icons.generated.models.ts";
+import type { IcapIconName } from "@core/models/icap-icons.generated.models.ts";
 
 const assetUrls: Record<string, string> = Object.fromEntries(
 	Object.entries(
@@ -13,9 +13,7 @@ const assetUrls: Record<string, string> = Object.fromEntries(
 
 export type IcapIconProps = Omit<ComponentProps<"span">, "color"> & {
 	/** Icon file name (without extension) inside `parentPath`. */
-	icon: ICapIconName;
-	/** When true, no icon styling is applied — renders a plain span. */
-	keepDefault?: boolean;
+	icon: IcapIconName;
 	/** Folder under `src/assets` that holds the icon. */
 	parentPath?: string;
 	/** Icon file extension. */
@@ -35,7 +33,6 @@ export type IcapIconProps = Omit<ComponentProps<"span">, "color"> & {
  */
 export const IcapIcon = ({
 	icon,
-	keepDefault = false,
 	parentPath = "icons",
 	extension = "svg",
 	size = "24px",
@@ -44,10 +41,6 @@ export const IcapIcon = ({
 	...props
 }: IcapIconProps) => {
 	const decorative = !props["aria-label"] && !props["aria-labelledby"];
-
-	if (keepDefault) {
-		return <span style={ style } aria-hidden={ decorative || undefined } { ...props } />;
-	}
 
 	const assetPath = `${ parentPath }/${ icon }.${ extension }`;
 	const url = assetUrls[assetPath];

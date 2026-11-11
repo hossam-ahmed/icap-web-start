@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { type ReactElement, ViewTransition } from "react";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ROUTES } from "./paths.ts";
@@ -30,9 +30,11 @@ const SandBox = lazy(() =>
  * render a fallback while the page chunk is downloading.
  */
 const lazyRoute = (element: ReactElement): ReactElement => (
-	<Suspense fallback={ <p className='p-3'>Loading…</p> }>
-		{ element }
-	</Suspense>
+	<ViewTransition>
+		<Suspense fallback={ <p className='p-3'>Loading…</p> }>
+			{ element }
+		</Suspense>
+	</ViewTransition>
 );
 
 const router = createBrowserRouter([

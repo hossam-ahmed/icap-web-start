@@ -14,7 +14,7 @@ const generate = () => {
   const content = `
 // AUTO-GENERATED FILE. DO NOT EDIT.
 export const iconNames = ${ JSON.stringify(icons, null, 2) } as const;
-export type ICapIconName = typeof iconNames[number];
+export type IcapIconName = typeof iconNames[number];
 `.trimStart();
   fs.writeFileSync(outputFile, content);
 }
