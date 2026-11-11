@@ -9,7 +9,9 @@
 
 @theme {
     /*typography*/
-    --font-default: sans-serif;
+    --font-rtl: "Tajawal", sans-serif;
+    --font-ltr: "Inter", sans-serif;
+    --font-default: var(--font-rtl);
     --text-color-default: var(--color-neutral-800);
     --text-fs-default: 15px; /*default font size*/
 
@@ -28,3 +30,12 @@
 }
 
 
+
+/* Switch the default font by document direction (dir is set in i18n.ts) */
+html[dir="rtl"] {
+    --font-default: var(--font-rtl);
+}
+
+html[dir="ltr"] {
+    --font-default: var(--font-ltr);
+}

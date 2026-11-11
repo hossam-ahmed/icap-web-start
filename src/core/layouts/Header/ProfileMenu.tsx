@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@core/AuthGate/useAuth.ts";
 import { ROUTES } from "@core/IcapRouter/paths.ts";
 
-/** First letters of up to two words, e.g. "Hossam Ahmed" -> "HA". */
 const getInitials = (name: string) =>
 	name.split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join("").toUpperCase() || "?";
 
