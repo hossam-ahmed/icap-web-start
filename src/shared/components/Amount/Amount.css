@@ -1,0 +1,24 @@
+@reference "@styles/tailwind-util.css";
+
+@layer components {
+    .icap-amount {
+        @apply inline-flex items-baseline gap-[0.15em] font-semibold whitespace-nowrap tabular-nums;
+
+        /*
+         * normalize.css gives every <span> a fixed font-size and color, so the parts would ignore
+         * a text-* class on the wrapper. Inherit instead, so everything scales from the wrapper
+         * (the icon is sized in em, relative to this font-size). `decimalSize` is an inline style,
+         * so it still overrides this for the decimal part.
+         */
+        & span {
+            font-size: inherit;
+            color: inherit;
+            font-weight: inherit;
+        }
+
+        .amount-currency {
+            /* the icon is a block box; center it against the digits */
+            @apply self-center;
+        }
+    }
+}
