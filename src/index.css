@@ -1,1 +1,13 @@
 @import "@styles/index.css";
+
+.ccc {
+    --radius: 80px;
+
+    border-radius: 32px;
+
+    mask: radial-gradient(
+            circle var(--radius) at 0 100%,
+            transparent calc(var(--radius) - 1px),
+            #000 var(--radius)
+    );
+}

@@ -110,10 +110,10 @@ export const Example = ({ title, className, contentClassName, description, code,
 				<button
 					type='button'
 					onClick={ () => setShowCode(v => !v) }
-					className='w-full text-left text-sm px-4 py-2 text-primary-700 hover:bg-neutral-50'>
+					className='w-full text-left bg-neutral-200 text-sm px-4 py-2 text-neutral-700 hover:bg-neutral-300 transition-colors'>
 					{ showCode ? "Hide code" : "Show code" }
 				</button>
-				{ showCode && <div className='px-4 pb-4'><CodeBlock code={ code }/></div> }
+				{ showCode && <div className='p-4 bg-white/80'><CodeBlock code={ code }/></div> }
 			</div>
 		</div>
 	);

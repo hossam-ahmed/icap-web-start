@@ -39,6 +39,8 @@ export const IcapToggler = ({
 					aria-describedby={ [describedBy, tooltip ? tooltipId : undefined].filter(Boolean).join(" ") || undefined }
 					{ ...props }/>
 				<span className='toggler-thumb' aria-hidden='true'/>
+
+				{/*to implement Tooltip component*/}
 				{ tooltip && (
 					<span role='tooltip' id={ tooltipId } className={ `toggler-tooltip ${ tooltipPlacement }` }>
 						{ tooltip }
