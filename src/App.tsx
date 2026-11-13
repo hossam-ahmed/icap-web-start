@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import { IcapClientProvider } from "@core/IcapClient/IcapClientProvider.tsx";
-import { Loader, LoaderProvider } from "@shared/components/Loader";
+import { IcapLoader, LoaderProvider } from "@shared/components/IcapLoader";
 import { AuthProvider } from "@core/AuthGate/AuthContext.tsx";
 import { AuthGate } from "@core/AuthGate/AuthGate.tsx";
 import { ICapRouter } from "@core/IcapRouter/ICapRouter.tsx";
@@ -20,7 +20,7 @@ function App() {
 		<IcapClientProvider>
 			<LoaderProvider>
 				<AuthProvider>
-					<Loader/>
+					<IcapLoader/>
 					<ICapRouter/>
 					<AuthGate/>
 				</AuthProvider>

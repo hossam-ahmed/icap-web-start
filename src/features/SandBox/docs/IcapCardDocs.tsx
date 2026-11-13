@@ -21,6 +21,15 @@ const cardProps: PropDoc[] = [
 	}
 ];
 
+const headerProps: PropDoc[] = [
+	{
+		name       : "bordered",
+		type       : "boolean",
+		default    : "false",
+		description: <>Adds a 1px solid bottom border in <InlineCode>border-color-primary</InlineCode> under the header.</>
+	}
+];
+
 export const IcapCardDocs = () => (
 	<DocPage
 		title='IcapCard'
@@ -58,6 +67,7 @@ export const IcapCardDocs = () => (
 
 			<Example
 				title='Footer with a background'
+				contentClassName='icap-bg'
 				description='The footer is rounded on the bottom with the same radius as the card, so its background follows the corners.'
 				code={ `
 <IcapCard>
@@ -65,16 +75,32 @@ export const IcapCardDocs = () => (
   <IcapCard.Content>Buy 100 shares</IcapCard.Content>
   <IcapCard.Footer className="bg-primary-100">Pending</IcapCard.Footer>
 </IcapCard>` }>
-				<IcapCard className='w-80'>
+				<IcapCard className='w-100'>
 					<IcapCard.Header>Order</IcapCard.Header>
 					<IcapCard.Content>Buy 100 shares</IcapCard.Content>
 					<IcapCard.Footer className='bg-primary-100'>Pending</IcapCard.Footer>
+				</IcapCard>
+			</Example>
+
+			<Example
+				title='Bordered header'
+				description='Pass bordered to separate the header from the content with a bottom border.'
+				code={ `
+<IcapCard>
+  <IcapCard.Header bordered>Portfolio</IcapCard.Header>
+  <IcapCard.Content>Your holdings summary goes here.</IcapCard.Content>
+</IcapCard>` }>
+				<IcapCard className='w-80'>
+					<IcapCard.Header bordered>Portfolio</IcapCard.Header>
+					<IcapCard.Content>Your holdings summary goes here.</IcapCard.Content>
 				</IcapCard>
 			</Example>
 		</DocSection>
 
 		<DocSection title='Props'>
 			<PropsTable props={ cardProps }/>
+			<h3 className='font-semibold mt-4 mb-2'>IcapCard.Header</h3>
+			<PropsTable props={ headerProps }/>
 			<Callout>
 				Styles live in <InlineCode>IcapCard.css</InlineCode> under <InlineCode>.icap-card</InlineCode>, with
 				<InlineCode>.card-header</InlineCode>, <InlineCode>.card-content</InlineCode> and <InlineCode>.card-footer</InlineCode> for the parts.

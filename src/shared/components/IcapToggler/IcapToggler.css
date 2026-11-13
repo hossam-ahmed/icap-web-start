@@ -1,0 +1,149 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    .icap-toggler {
+        /* Track height; everything else derives from it, in em so text-* classes scale it */
+        --toggler-h: 1.6em;
+        --toggler-w: calc(var(--toggler-h) * 1.8);
+        /* Gap between the thumb and the track edge */
+        --toggler-inset: .1em;
+        --toggler-thumb: calc(var(--toggler-h) - var(--toggler-inset) * 2);
+
+        @apply inline-flex items-center gap-2 cursor-pointer select-none;
+
+        /* normalize.css fixes every span's font-size; inherit so the em sizes follow text-* classes */
+        .toggler-control, .toggler-thumb {
+            font-size: inherit;
+        }
+
+        .toggler-control {
+            @apply relative inline-flex shrink-0;
+            width: var(--toggler-w);
+            height: var(--toggler-h);
+        }
+
+        .toggler-input {
+            @apply appearance-none m-0 size-full cursor-pointer rounded-full bg-neutral-200 outline-0;
+            transition: background-color .25s ease;
+
+            &:focus-visible {
+                @apply outline-3;
+            }
+        }
+
+        .toggler-thumb {
+            @apply absolute rounded-full bg-white pointer-events-none;
+            top: var(--toggler-inset);
+            inset-inline-start: var(--toggler-inset);
+            width: var(--toggler-thumb);
+            height: var(--toggler-thumb);
+            box-shadow: 0 1px 2px rgb(0 0 0 / .12);
+            /* inset-inline-start follows the writing direction, so it slides the right way in RTL too */
+            transition: inset-inline-start .25s ease;
+        }
+
+        .toggler-input:checked ~ .toggler-thumb {
+            inset-inline-start: calc(100% - var(--toggler-thumb) - var(--toggler-inset));
+        }
+
+        &.primary .toggler-input {
+            @apply outline-color-primary-default;
+
+            &:not(:disabled):hover {
+                @apply bg-neutral-300;
+            }
+
+            &:checked {
+                @apply bg-primary;
+            }
+
+            &:checked:not(:disabled):hover {
+                @apply bg-primary-800;
+            }
+        }
+
+        &.secondary .toggler-input {
+            @apply outline-color-secondary-default;
+
+            &:not(:disabled):hover {
+                @apply bg-neutral-300;
+            }
+
+            &:checked {
+                @apply bg-secondary;
+            }
+
+            &:checked:not(:disabled):hover {
+                @apply bg-secondary-700;
+            }
+        }
+
+        /* Disabled: driven by the native attribute */
+        &:has(.toggler-input:disabled) {
+            @apply cursor-not-allowed opacity-50;
+
+            .toggler-input {
+                @apply cursor-not-allowed;
+            }
+        }
+
+        /* ---------- tooltip ---------- */
+
+        .toggler-tooltip {
+            @apply absolute left-1/2 z-10 px-2.5 py-1.5 rounded-md bg-neutral-800 text-white text-xs whitespace-nowrap
+                   pointer-events-none;
+            line-height: 1.3;
+            opacity: 0;
+            visibility: hidden;
+            translate: -50% 0;
+            transition: opacity .15s ease, visibility .15s ease;
+
+            /* Arrow */
+            &::after {
+                content: "";
+                @apply absolute left-1/2 border-[5px] border-transparent;
+                translate: -50% 0;
+            }
+
+            &.top {
+                bottom: calc(100% + 8px);
+
+                &::after {
+                    @apply top-full border-t-neutral-800;
+                }
+            }
+
+            &.bottom {
+                top: calc(100% + 8px);
+
+                &::after {
+                    @apply bottom-full border-b-neutral-800;
+                }
+            }
+        }
+
+        /* normalize.css fixes span font-size/color; the tooltip keeps its own */
+        .toggler-tooltip, .toggler-label {
+            font-weight: inherit;
+        }
+
+        .toggler-label {
+            font-size: inherit;
+            color: inherit;
+        }
+
+        .toggler-control:hover .toggler-tooltip,
+        .toggler-input:focus-visible ~ .toggler-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-toggler .toggler-input,
+        .icap-toggler .toggler-thumb,
+        .icap-toggler .toggler-tooltip {
+            transition: none;
+        }
+    }
+}

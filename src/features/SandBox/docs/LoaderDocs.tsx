@@ -1,5 +1,5 @@
-import { Button } from "@shared/components/Button";
-import { useLoader } from "@shared/components/Loader";
+import { IcapButton } from "@shared/components/IcapButton";
+import { useLoader } from "@shared/components/IcapLoader";
 import { Callout, CodeBlock, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -41,16 +41,16 @@ export const LoaderDocs = () => {
 
 	return (
 		<DocPage
-			title='Loader'
+			title='IcapLoader'
 			description={ <>A global, full-screen loading overlay rendered into <InlineCode>document.body</InlineCode> via a portal.
 				It is controlled from anywhere with the <InlineCode>useLoader()</InlineCode> hook and is reference-counted, so
 				overlapping requests keep it visible until the last one finishes.</> }
-			importCode={ `import { Loader, LoaderProvider, useLoader } from "@shared/components/Loader";` }>
+			importCode={ `import { IcapLoader, LoaderProvider, useLoader } from "@shared/components/IcapLoader";` }>
 
-			<DocSection title='Setup' description='Already done in App.tsx — mount the provider once and render <Loader/> inside it.'>
+			<DocSection title='Setup' description='Already done in App.tsx — mount the provider once and render <IcapLoader/> inside it.'>
 				<CodeBlock code={ `
 <LoaderProvider>
-  <Loader />
+  <IcapLoader />
   <ICapRouter />
 </LoaderProvider>` }/>
 			</DocSection>
@@ -70,7 +70,7 @@ const save = async () => {
     hideLoader();
   }
 };` }>
-					<Button onClick={ () => runTask(1500) }>Show loader for 1.5s</Button>
+					<IcapButton onClick={ () => runTask(1500) }>Show loader for 1.5s</IcapButton>
 				</Example>
 
 				<Example
@@ -79,7 +79,7 @@ const save = async () => {
 					code={ `
 runTask(800);
 runTask(2000); // loader hides after ~2s, not 0.8s` }>
-					<Button onClick={ runParallel }>Run 2 tasks in parallel</Button>
+					<IcapButton onClick={ runParallel }>Run 2 tasks in parallel</IcapButton>
 				</Example>
 
 				<Example

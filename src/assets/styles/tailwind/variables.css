@@ -1,0 +1,23 @@
+@theme {
+    /*typography*/
+    --font-rtl: "Tajawal", sans-serif;
+    --font-ltr: "Inter", sans-serif;
+    --font-default: var(--font-rtl);
+    --text-color-default: var(--color-neutral-800);
+    --text-fs-default: 14px; /*default font size*/
+    /*radius*/
+    --radius-default: var(--radius-2xl);
+
+    /*outline color*/
+    --outline-color-primary-default: var(--color-primary-200);
+    --outline-color-secondary-default: var(--color-secondary-200);
+
+    /*border color*/
+    --border-color-primary: #E8E2DB;
+
+    /*scrollbar*/
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: var(--color-secondary-200);
+    --scrollbar-thumb-hover: var(--color-secondary-400);
+    --scrollbar-thumb-active: var(--color-secondary);
+}

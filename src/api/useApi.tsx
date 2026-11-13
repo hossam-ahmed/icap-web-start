@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from "axios";
 import axios from "axios";
 import type { APIConfig, UseApiResult } from "./ApiConfig.ts";
 import { env } from "@core/config/env.ts";
-import { useLoader } from "@shared/components/Loader";
+import { useLoader } from "@shared/components/IcapLoader";
 import { computeOrigin, delay } from "@core/globals/Utils.ts";
 
 const generateRequestUrl = (config: APIConfig): string => {

@@ -1,4 +1,4 @@
-@reference "@styles/tailwind-util.css";
+@reference "@styles/tailwind/index.css";
 
 @layer components {
     .icap-checkbox {

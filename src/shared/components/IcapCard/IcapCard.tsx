@@ -2,12 +2,15 @@ import type { ComponentProps } from "react";
 import "./IcapCard.css";
 
 export type IcapCardProps = ComponentProps<"div">;
-export type IcapCardHeaderProps = ComponentProps<"div">;
+export type IcapCardHeaderProps = ComponentProps<"div"> & {
+	/** Adds a 1px bottom border (border-color-primary) under the header. Default: `false`. */
+	bordered?: boolean;
+};
 export type IcapCardContentProps = ComponentProps<"div">;
 export type IcapCardFooterProps = ComponentProps<"div">;
 
-const CardHeader = ({ className = "", ...props }: IcapCardHeaderProps) =>
-	<div className={ `card-header ${ className }` } { ...props }/>;
+const CardHeader = ({ bordered = false, className = "", ...props }: IcapCardHeaderProps) =>
+	<div className={ `card-header ${ bordered ? "bordered" : "" } ${ className }` } { ...props }/>;
 
 const CardContent = ({ className = "", ...props }: IcapCardContentProps) =>
 	<div className={ `card-content ${ className }` } { ...props }/>;

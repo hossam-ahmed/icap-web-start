@@ -5,7 +5,7 @@
         padding: 0;
         font-family: var(--font-default), serif;
         line-height: 1;
-        @apply text-fs-default text-color-default;
+        @apply text-fs-default text-color-default font-light;
     }
 
     body::before {

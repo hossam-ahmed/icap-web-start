@@ -1,12 +1,12 @@
 import type { ComponentProps } from "react";
-import "./Button.css"
+import "./IcapButton.css"
 
 export type ButtonVariants = "primary" | "secondary";
 export type ButtonProps = ComponentProps<"button"> & {
 	variant?: ButtonVariants;
 };
 
-export const Button = ({
+export const IcapButton = ({
 	type = "button",
 	className,
 	variant = 'primary',

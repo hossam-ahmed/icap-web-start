@@ -1,4 +1,4 @@
-@reference "@styles/tailwind-util.css";
+@reference "@styles/tailwind/index.css";
 
 @layer components {
     .icap-card {
@@ -7,10 +7,18 @@
 
         @apply flex flex-col bg-white rounded-default;
         padding: var(--card-inner-border);
-        box-shadow: 0 0 7px .5px rgba(0,0,0,.03);
+        box-shadow: 0 0 7px .5px rgba(0, 0, 0, .03);
 
         .card-header {
-            @apply py-4 px-5 text-xl;
+            @apply py-4 px-5 text-2xl font-light;
+
+            span, div, p {
+                @apply text-inherit;
+            }
+
+            &.bordered {
+                @apply border-b border-color-primary;
+            }
         }
 
         .card-content {
@@ -21,6 +29,7 @@
          * Rounded on the bottom so its corners follow the card's. The radius is reduced by the
          * inner border, so the white border stays an even width around the curve.
          */
+
         .card-footer {
             @apply py-4 px-5;
             border-bottom-left-radius: calc(var(--radius-default) - var(--card-inner-border));

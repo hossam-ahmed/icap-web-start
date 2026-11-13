@@ -90,18 +90,20 @@ type ExampleProps = PropsWithChildren<{
 	description?: ReactNode;
 	/** Source code displayed under the live preview. Keep it in sync with `children`. */
 	code: string;
+	className?: string;
+	contentClassName?: string;
 }>;
 
-export const Example = ({ title, description, code, children }: ExampleProps) => {
+export const Example = ({ title, className, contentClassName, description, code, children }: ExampleProps) => {
 	const [showCode, setShowCode] = useState(false);
 
 	return (
-		<div className='border border-neutral-200 rounded-lg overflow-hidden'>
+		<div className={`border border-neutral-200 rounded-lg overflow-hidden ${className}`}>
 			<div className='px-4 py-3 border-b border-neutral-200 bg-neutral-50'>
 				<h3 className='font-medium text-neutral-900'>{ title }</h3>
 				{ description && <p className='text-sm text-neutral-600'>{ description }</p> }
 			</div>
-			<div className='p-6 flex flex-wrap items-center gap-4 bg-white'>
+			<div className={`p-6 flex flex-wrap items-center gap-4 bg-white ${contentClassName}`}>
 				{ children }
 			</div>
 			<div className='border-t border-neutral-200'>

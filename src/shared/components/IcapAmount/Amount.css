@@ -1,0 +1,77 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    .icap-amount {
+        @apply inline-flex items-baseline gap-[0.15em] font-semibold whitespace-nowrap tabular-nums;
+
+        /*
+         * normalize.css gives every <span> a fixed font-size and color, so the parts would ignore
+         * a text-* class on the wrapper. Inherit instead, so everything scales from the wrapper
+         * (the icon is sized in em, relative to this font-size). `decimalSize` is an inline style,
+         * so it still overrides this for the decimal part.
+         */
+        & span {
+            font-size: inherit;
+            color: inherit;
+            font-weight: inherit;
+        }
+
+        .amount-currency {
+            /* the icon is a block box; center it against the digits */
+            @apply self-center;
+        }
+
+        /* ---------- editable ---------- */
+
+        &.editable {
+            @apply items-center cursor-text;
+
+            .amount-input {
+                /* Takes everything from the wrapper, so a text-* class there scales the input too */
+                font: inherit;
+                color: inherit;
+                letter-spacing: inherit;
+                line-height: 1.25;
+                @apply p-0 m-0 border-0 bg-transparent rounded-none outline-0;
+                /* Grow with the typed value (falls back to the input's `size` attribute where unsupported) */
+                field-sizing: content;
+                min-width: 1ch;
+                max-width: 100%;
+            }
+
+            &:has(.amount-input:disabled) {
+                @apply opacity-50 cursor-not-allowed;
+
+                .amount-input {
+                    @apply cursor-not-allowed;
+                }
+            }
+        }
+
+        /* Flat: reads like the display amount. Show a subtle underline only while editing */
+        &.editable.flat {
+            &:focus-within {
+                box-shadow: 0 1px 0 0 var(--color-primary-700);
+            }
+        }
+
+        /*
+         * Field: TEMPORARY form-field look, until the shared Form input component replaces it.
+         * Padding is in em so it scales with the font size.
+         */
+        &.editable.field {
+            @apply bg-white border border-color-primary rounded-default font-normal;
+            padding: .6em .9em;
+            transition: border-color .2s ease, box-shadow .2s ease;
+
+            .amount-input {
+                min-width: 4ch;
+            }
+
+            &:focus-within {
+                @apply border-primary-700;
+                box-shadow: 0 0 0 3px var(--color-primary-200);
+            }
+        }
+    }
+}

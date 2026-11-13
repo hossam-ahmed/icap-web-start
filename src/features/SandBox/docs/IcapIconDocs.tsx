@@ -1,5 +1,5 @@
 import { IcapIcon } from "@shared/components/IcapIcon";
-import { Button } from "@shared/components/Button";
+import { IcapButton } from "@shared/components/IcapButton";
 import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 const iconProps: PropDoc[] = [
@@ -96,14 +96,14 @@ export const IcapIconDocs = () => (
 			<Example
 				title='Icon inside a Button'
 				code={ `
-<Button className="flex items-center gap-2">
+<IcapButton className="flex items-center gap-2">
   <IcapIcon icon="loader" size="18px" />
   Refresh
-</Button>` }>
-				<Button className='flex items-center justify-center gap-2'>
+</IcapButton>` }>
+				<IcapButton className='flex items-center justify-center gap-2'>
 					<IcapIcon icon='loader' size='18px'/>
 					Refresh
-				</Button>
+				</IcapButton>
 			</Example>
 
 			<Example

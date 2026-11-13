@@ -65,7 +65,7 @@ Component docs (SandBox) are available at `/sandbox`.
     │   └── models/           # generated files (icon names)
     ├── features/             # one folder per page/feature (Home, Login, SandBox)
     └── shared/
-        └── components/       # reusable UI: Button, Divider, IcapIcon, Loader, LanguageSwitcher
+        └── components/       # reusable UI: Button, Divider, IcapIcon, IcapLoader, LanguageSwitcher
 ```
 
 Path aliases: `@core`, `@features`, `@shared`, `@assets` → matching folders under `src/`.

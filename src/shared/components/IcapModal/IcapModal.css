@@ -1,0 +1,109 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    .icap-modal {
+        /* Same inner white border as IcapCard */
+        --modal-inner-border: 3px;
+
+        @apply m-auto p-0 border-0 bg-transparent rounded-default overflow-visible;
+        width: min(32rem, calc(100vw - 2rem));
+        max-height: calc(100dvh - 2rem);
+        color: inherit;
+
+        /* Open/close animation: fade + slight scale; display/overlay stay discrete until it ends */
+        opacity: 0;
+        transform: scale(.96);
+        transition: opacity .2s ease, transform .2s ease, overlay .2s allow-discrete, display .2s allow-discrete;
+
+        &[open] {
+            @apply flex flex-col;
+            opacity: 1;
+            transform: none;
+
+            @starting-style {
+                opacity: 0;
+                transform: scale(.96);
+            }
+        }
+
+        &::backdrop {
+            background: rgb(0 0 0 / 0);
+            transition: background-color .2s ease, overlay .2s allow-discrete, display .2s allow-discrete;
+        }
+
+        &[open]::backdrop {
+            background: rgb(0 0 0 / .35);
+
+            @starting-style {
+                background: rgb(0 0 0 / 0);
+            }
+        }
+
+        .modal-surface {
+            @apply flex flex-col w-full min-h-0 bg-white rounded-default;
+            padding: var(--modal-inner-border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .12);
+        }
+
+        .modal-header {
+            @apply py-4 px-5 text-2xl font-light shrink-0;
+
+            span, div, p {
+                @apply text-inherit;
+            }
+
+            &.bordered {
+                @apply border-b border-color-primary;
+            }
+        }
+
+        /* Leave room for the close button */
+        &.closable .modal-header {
+            @apply pe-14;
+        }
+
+        /*
+         * Scrolls when the modal reaches the viewport height. A scrolling box is focusable, so the
+         * browser may focus it on open; hide that ring (it's not a control).
+         */
+        .modal-content {
+            @apply p-5 grow min-h-0 overflow-y-auto outline-0;
+        }
+
+        /* Rounded on the bottom so a footer background follows the modal's corners */
+        .modal-footer {
+            @apply flex items-center justify-end gap-3 py-4 px-5 shrink-0;
+            border-bottom-left-radius: calc(var(--radius-default) - var(--modal-inner-border));
+            border-bottom-right-radius: calc(var(--radius-default) - var(--modal-inner-border));
+        }
+
+        .modal-close {
+            @apply absolute top-3 end-3 inline-flex items-center justify-center size-9 p-0 border-0 rounded-full
+                   bg-neutral-400 text-neutral-600 outline-0 transition-colors;
+
+            svg {
+                @apply size-5;
+            }
+
+            &:hover {
+                @apply bg-neutral-500 text-neutral-900;
+            }
+
+            &:focus-visible {
+                @apply outline-2 outline-color-secondary-default;
+            }
+        }
+    }
+
+    /* Lock page scroll while a modal is open */
+    html:has(.icap-modal[open]) {
+        overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-modal,
+        .icap-modal::backdrop {
+            transition: none;
+        }
+    }
+}

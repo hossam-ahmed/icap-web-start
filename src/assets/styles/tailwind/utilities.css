@@ -1,0 +1,16 @@
+@utility text-color-* {
+    color: --value(--text-color-*);
+}
+@utility outline-color-* {
+    outline-color: --value(--outline-color-*);
+}
+@utility border-color-* {
+    border-color: --value(--border-color-*);
+}
+@utility border-default {
+    border: 1px solid var(--border-color-primary);
+}
+@utility icap-bg {
+    background: url("@assets/images/Background.png") center;
+    background-size: cover;
+}

@@ -1,6 +1,6 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import type { Location } from "react-router-dom";
-import { Button } from "@shared/components/Button";
+import { IcapButton } from "@shared/components/IcapButton";
 import { useAuth } from "@core/AuthGate/useAuth.ts";
 import { ROUTES } from "@core/IcapRouter/paths.ts";
 
@@ -27,7 +27,7 @@ export const Login = () => {
 	return (
 		<>
 			<h1>Login First ...</h1>
-			<Button onClick={ handleLogin }>Login</Button>
+			<IcapButton onClick={ handleLogin }>Login</IcapButton>
 		</>
 	)
 };

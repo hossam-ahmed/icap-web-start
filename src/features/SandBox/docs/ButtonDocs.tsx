@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@shared/components/Button";
+import { IcapButton } from "@shared/components/IcapButton";
 import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 const buttonProps: PropDoc[] = [
@@ -32,20 +32,20 @@ export const ButtonDocs = () => {
 
 	return (
 		<DocPage
-			title='Button'
+			title='IcapButton'
 			description={ <>A thin wrapper around the native <InlineCode>&lt;button&gt;</InlineCode> that applies the app's
 				design tokens. Every native button attribute (<InlineCode>onClick</InlineCode>, <InlineCode>disabled</InlineCode>,
 				<InlineCode>aria-*</InlineCode>, …) is forwarded.</> }
-			importCode={ `import { Button } from "@shared/components/Button";` }>
+			importCode={ `import { IcapButton } from "@shared/components/IcapButton";` }>
 
 			<DocSection title='Variants'>
 				<Example
 					title='Primary & secondary'
 					code={ `
-<Button variant="primary">Primary</Button>
-<Button variant="secondary">Secondary</Button>` }>
-					<Button variant='primary'>Primary</Button>
-					<Button variant='secondary'>Secondary</Button>
+<IcapButton variant="primary">Primary</IcapButton>
+<IcapButton variant="secondary">Secondary</IcapButton>` }>
+					<IcapButton variant='primary'>Primary</IcapButton>
+					<IcapButton variant='secondary'>Secondary</IcapButton>
 				</Example>
 			</DocSection>
 
@@ -53,8 +53,8 @@ export const ButtonDocs = () => {
 				<Example
 					title='Disabled'
 					description='Uses the native disabled attribute; styling switches to primary-200.'
-					code={ `<Button disabled>Disabled</Button>` }>
-					<Button disabled>Disabled</Button>
+					code={ `<IcapButton disabled>Disabled</IcapButton>` }>
+					<IcapButton disabled>Disabled</IcapButton>
 				</Example>
 			</DocSection>
 
@@ -64,10 +64,10 @@ export const ButtonDocs = () => {
 					code={ `
 const [count, setCount] = useState(0);
 
-<Button onClick={() => setCount(c => c + 1)}>
+<IcapButton onClick={() => setCount(c => c + 1)}>
   Clicked {count} times
-</Button>` }>
-					<Button onClick={ () => setCount(c => c + 1) }>Clicked { count } times</Button>
+</IcapButton>` }>
+					<IcapButton onClick={ () => setCount(c => c + 1) }>Clicked { count } times</IcapButton>
 				</Example>
 
 				<Example
@@ -75,15 +75,15 @@ const [count, setCount] = useState(0);
 					description='Pass type="submit" explicitly when the button should submit.'
 					code={ `
 <form onSubmit={(e) => { e.preventDefault(); /* ... */ }}>
-  <Button type="submit">Save</Button>
-  <Button type="reset" variant="secondary">Reset</Button>
+  <IcapButton type="submit">Save</IcapButton>
+  <IcapButton type="reset" variant="secondary">Reset</IcapButton>
 </form>` }>
 					<form className='flex gap-4' onSubmit={ e => {
 						e.preventDefault();
 						alert("Submitted!");
 					} }>
-						<Button type='submit'>Save</Button>
-						<Button type='reset' variant='secondary'>Reset</Button>
+						<IcapButton type='submit'>Save</IcapButton>
+						<IcapButton type='reset' variant='secondary'>Reset</IcapButton>
 					</form>
 				</Example>
 			</DocSection>
@@ -92,8 +92,8 @@ const [count, setCount] = useState(0);
 				<Example
 					title='Extra classes'
 					description='className is appended, so Tailwind utilities can extend the base styles.'
-					code={ `<Button className="w-full font-semibold">Full width</Button>` }>
-					<Button className='w-full font-semibold'>Full width</Button>
+					code={ `<IcapButton className="w-full font-semibold">Full width</IcapButton>` }>
+					<IcapButton className='w-full font-semibold'>Full width</IcapButton>
 				</Example>
 			</DocSection>
 
@@ -102,7 +102,7 @@ const [count, setCount] = useState(0);
 					props={ buttonProps }
 					note={ <>Also accepts every prop of <InlineCode>ComponentProps&lt;"button"&gt;</InlineCode>.</> }/>
 				<Callout type='warning'>
-					The <InlineCode>secondary</InlineCode> variant currently has the same styles as <InlineCode>primary</InlineCode> in <InlineCode>Button.css</InlineCode>.
+					The <InlineCode>secondary</InlineCode> variant currently has the same styles as <InlineCode>primary</InlineCode> in <InlineCode>IcapButton.css</InlineCode>.
 				</Callout>
 			</DocSection>
 		</DocPage>

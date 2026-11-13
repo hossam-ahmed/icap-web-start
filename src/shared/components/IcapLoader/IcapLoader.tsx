@@ -1,4 +1,4 @@
-import './Loader.css';
+import './IcapLoader.css';
 import { createPortal } from "react-dom";
 import { useLoader } from "./useLoader.tsx";
 import { IcapIcon } from "@shared/components/IcapIcon";
@@ -7,7 +7,7 @@ export type LoaderProps = {
 	loaderMessage?: string;
 };
 
-export const Loader = ({ loaderMessage }: LoaderProps) => {
+export const IcapLoader = ({ loaderMessage }: LoaderProps) => {
 
 	const { loading } = useLoader();
 	const loader = createPortal(<div className='icap-loader'>

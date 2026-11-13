@@ -1,7 +1,7 @@
 import "./Home.css"
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { Button } from "@shared/components/Button";
+import { IcapButton } from "@shared/components/IcapButton";
 
 export const Home = () => {
 
@@ -17,8 +17,8 @@ export const Home = () => {
 
 			<p>{ t("home.notifications", { count }) }</p>
 			<div className='flex gap-2'>
-				<Button className='text-white' onClick={ () => setCount(c => c + 1) }>+</Button>
-				<Button className='text-white' onClick={ () => setCount(c => Math.max(0, c - 1)) }>−</Button>
+				<IcapButton className='text-white' onClick={ () => setCount(c => c + 1) }>+</IcapButton>
+				<IcapButton className='text-white' onClick={ () => setCount(c => Math.max(0, c - 1)) }>−</IcapButton>
 			</div>
 
 			<p>

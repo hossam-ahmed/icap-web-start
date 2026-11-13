@@ -1,5 +1,8 @@
-@import "tailwind-util.css";
+@import "./tailwind";
+
+/*base*/
 @import "./normalize.css";
+@import "./variables.css";
 
 /*components*/
 @import "./components/table.css";
