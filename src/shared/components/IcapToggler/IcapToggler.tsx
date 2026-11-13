@@ -1,15 +1,16 @@
 import { type ComponentProps, type ReactNode, useId } from "react";
+import { IcapTooltip, type IcapTooltipPlacement } from "@shared/components/IcapTooltip";
 import "./IcapToggler.css";
 
-export type IcapTogglerVariants = "primary" | "secondary";
-export type IcapTogglerTooltipPlacement = "top" | "bottom";
+export type IcapTogglerVariants = "primary" | "secondary" | "alternate";
+export type IcapTogglerTooltipPlacement = IcapTooltipPlacement;
 export type IcapTogglerProps = Omit<ComponentProps<"input">, "type" | "children" | "role"> & {
 	variant?: IcapTogglerVariants;
 	/** Optional label next to the switch; clicking it toggles the switch. */
 	children?: ReactNode;
 	/** Text shown in a tooltip when the switch is hovered or focused with the keyboard. */
 	tooltip?: ReactNode;
-	/** Where the tooltip appears. Default: `"top"`. */
+	/** Where the tooltip appears (`top`, `bottom`, `start`, `end`). Default: `"top"`. */
 	tooltipPlacement?: IcapTogglerTooltipPlacement;
 };
 
@@ -31,22 +32,18 @@ export const IcapToggler = ({
 
 	return (
 		<label className={ `icap-toggler ${ variant }` }>
-			<span className='toggler-control'>
-				<input
-					type='checkbox'
-					role='switch'
-					className={ `toggler-input ${ className }` }
-					aria-describedby={ [describedBy, tooltip ? tooltipId : undefined].filter(Boolean).join(" ") || undefined }
-					{ ...props }/>
-				<span className='toggler-thumb' aria-hidden='true'/>
-
-				{/*to implement Tooltip component*/}
-				{ tooltip && (
-					<span role='tooltip' id={ tooltipId } className={ `toggler-tooltip ${ tooltipPlacement }` }>
-						{ tooltip }
-					</span>
-				) }
-			</span>
+			{/* The tooltip is described on the input itself (describeChild off), since the input is what gets focus */ }
+			<IcapTooltip content={ tooltip } placement={ tooltipPlacement } id={ tooltipId } describeChild={ false }>
+				<span className='toggler-control'>
+					<input
+						type='checkbox'
+						role='switch'
+						className={ `toggler-input ${ className }` }
+						aria-describedby={ [describedBy, tooltip ? tooltipId : undefined].filter(Boolean).join(" ") || undefined }
+						{ ...props }/>
+					<span className='toggler-thumb' aria-hidden='true'/>
+				</span>
+			</IcapTooltip>
 			{ children && <span className='toggler-label'>{ children }</span> }
 		</label>
 	);

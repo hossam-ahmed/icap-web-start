@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import "./IcapRadio.css";
 
-export type IcapRadioVariants = "primary" | "secondary";
+export type IcapRadioVariants = "primary" | "secondary" | "alternate";
 export type IcapRadioProps = Omit<ComponentProps<"input">, "type" | "children"> & {
 	variant?: IcapRadioVariants;
 	/** Optional label rendered next to the radio; clicking it selects the radio. */

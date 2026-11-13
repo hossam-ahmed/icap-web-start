@@ -1,0 +1,8 @@
+@reference "@styles/tailwind/index.css";
+
+/* In the components layer, so utility classes passed via className (bg-*, rounded-*, border-*) override it */
+@layer components {
+    .icap-box-panel {
+        @apply bg-white rounded-default border-default;
+    }
+}

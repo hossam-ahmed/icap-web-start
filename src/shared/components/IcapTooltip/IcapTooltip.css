@@ -1,0 +1,78 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    /* Transparent wrapper: normalize.css fixes span font-size/color, so inherit them back */
+    .icap-tooltip-trigger {
+        @apply inline-flex;
+        font-size: inherit;
+        color: inherit;
+        font-weight: inherit;
+    }
+
+    .icap-tooltip {
+        /* Reset the UA popover styles; position is set inline from JS (viewport coordinates) */
+        position: fixed;
+        inset: auto;
+        margin: 0;
+        overflow: visible;
+
+        @apply px-2.5 py-1.5 rounded-md border-0 bg-neutral-800 text-white text-xs pointer-events-none;
+        max-width: min(18rem, calc(100vw - 16px));
+        width: max-content;
+        line-height: 1.35;
+        font-weight: normal;
+        box-shadow: 0 4px 12px rgb(0 0 0 / .15);
+
+        /* Fade in/out; display/overlay stay discrete until the fade ends */
+        opacity: 0;
+        transition: opacity .15s ease, overlay .15s allow-discrete, display .15s allow-discrete;
+
+        &:popover-open {
+            opacity: 1;
+
+            @starting-style {
+                opacity: 0;
+            }
+        }
+
+        /* Arrow, pointing at the trigger (--tooltip-arrow = offset along the bubble edge) */
+        &::after {
+            content: "";
+            @apply absolute border-[5px] border-transparent;
+        }
+
+        &.top::after {
+            top: 100%;
+            left: var(--tooltip-arrow, 50%);
+            translate: -50% 0;
+            @apply border-t-neutral-800;
+        }
+
+        &.bottom::after {
+            bottom: 100%;
+            left: var(--tooltip-arrow, 50%);
+            translate: -50% 0;
+            @apply border-b-neutral-800;
+        }
+
+        &.left::after {
+            left: 100%;
+            top: var(--tooltip-arrow, 50%);
+            translate: 0 -50%;
+            @apply border-l-neutral-800;
+        }
+
+        &.right::after {
+            right: 100%;
+            top: var(--tooltip-arrow, 50%);
+            translate: 0 -50%;
+            @apply border-r-neutral-800;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-tooltip {
+            transition: none;
+        }
+    }
+}

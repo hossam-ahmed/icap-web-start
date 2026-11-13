@@ -5,7 +5,7 @@ import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsT
 const checkboxProps: PropDoc[] = [
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary"`,
+		type       : `"primary" | "secondary" | "alternate"`,
 		default    : `"primary"`,
 		description: "Color scheme of the box and check mark."
 	},
@@ -41,12 +41,14 @@ export const IcapCheckboxDocs = () => {
 
 			<DocSection title='Variants'>
 				<Example
-					title='Primary & secondary'
+					title='Primary, secondary & alternate'
 					code={ `
 <IcapCheckbox variant="primary" defaultChecked>Primary</IcapCheckbox>
-<IcapCheckbox variant="secondary" defaultChecked>Secondary</IcapCheckbox>` }>
+<IcapCheckbox variant="secondary" defaultChecked>Secondary</IcapCheckbox>
+<IcapCheckbox variant="alternate" defaultChecked>Alternate</IcapCheckbox>` }>
 					<IcapCheckbox variant='primary' defaultChecked>Primary</IcapCheckbox>
 					<IcapCheckbox variant='secondary' defaultChecked>Secondary</IcapCheckbox>
+					<IcapCheckbox variant='alternate' defaultChecked>Alternate</IcapCheckbox>
 				</Example>
 
 				<Example
@@ -89,7 +91,7 @@ const [accepted, setAccepted] = useState(false);
 				<PropsTable props={ checkboxProps }/>
 				<Callout>
 					Styles live in <InlineCode>IcapCheckbox.css</InlineCode> under <InlineCode>.icap-checkbox</InlineCode>,
-					with <InlineCode>.primary</InlineCode> / <InlineCode>.secondary</InlineCode> modifiers on the label.
+					with <InlineCode>.primary</InlineCode> / <InlineCode>.secondary</InlineCode> / <InlineCode>.alternate</InlineCode> modifiers on the label.
 				</Callout>
 			</DocSection>
 		</DocPage>

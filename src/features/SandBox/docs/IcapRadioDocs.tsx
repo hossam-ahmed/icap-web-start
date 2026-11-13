@@ -5,7 +5,7 @@ import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsT
 const radioProps: PropDoc[] = [
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary"`,
+		type       : `"primary" | "secondary" | "alternate"`,
 		default    : `"primary"`,
 		description: "Color of the ring."
 	},
@@ -44,13 +44,16 @@ export const IcapRadioDocs = () => {
 
 			<DocSection title='Variants'>
 				<Example
-					title='Primary & secondary'
+					title='Primary, secondary & alternate'
 					code={ `
 <IcapRadio name="primary-demo" defaultChecked>Selected</IcapRadio>
 <IcapRadio name="primary-demo">Unselected</IcapRadio>
 
 <IcapRadio variant="secondary" name="secondary-demo" defaultChecked>Selected</IcapRadio>
-<IcapRadio variant="secondary" name="secondary-demo">Unselected</IcapRadio>` }>
+<IcapRadio variant="secondary" name="secondary-demo">Unselected</IcapRadio>
+
+<IcapRadio variant="alternate" name="alternate-demo" defaultChecked>Selected</IcapRadio>
+<IcapRadio variant="alternate" name="alternate-demo">Unselected</IcapRadio>` }>
 					<div className='flex flex-col gap-3'>
 						<IcapRadio name='primary-demo' defaultChecked>Selected</IcapRadio>
 						<IcapRadio name='primary-demo'>Unselected</IcapRadio>
@@ -58,6 +61,10 @@ export const IcapRadioDocs = () => {
 					<div className='flex flex-col gap-3'>
 						<IcapRadio variant='secondary' name='secondary-demo' defaultChecked>Selected</IcapRadio>
 						<IcapRadio variant='secondary' name='secondary-demo'>Unselected</IcapRadio>
+					</div>
+					<div className='flex flex-col gap-3'>
+						<IcapRadio variant='alternate' name='alternate-demo' defaultChecked>Selected</IcapRadio>
+						<IcapRadio variant='alternate' name='alternate-demo'>Unselected</IcapRadio>
 					</div>
 				</Example>
 			</DocSection>
@@ -107,7 +114,7 @@ const [plan, setPlan] = useState("Pro");
 				<PropsTable props={ radioProps }/>
 				<Callout>
 					Styles live in <InlineCode>IcapRadio.css</InlineCode> under <InlineCode>.icap-radio</InlineCode>,
-					with <InlineCode>.primary</InlineCode> / <InlineCode>.secondary</InlineCode> modifiers on the label. The donut
+					with <InlineCode>.primary</InlineCode> / <InlineCode>.secondary</InlineCode> / <InlineCode>.alternate</InlineCode> modifiers on the label. The donut
 					is the input's own border animating from 2px to 6px when checked.
 				</Callout>
 			</DocSection>

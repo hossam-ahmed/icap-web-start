@@ -5,7 +5,7 @@ import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsT
 const togglerProps: PropDoc[] = [
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary"`,
+		type       : `"primary" | "secondary" | "alternate"`,
 		default    : `"primary"`,
 		description: "Color of the track when on."
 	},
@@ -51,13 +51,15 @@ export const IcapTogglerDocs = () => {
 
 			<DocSection title='Variants'>
 				<Example
-					title='Primary & secondary'
+					title='Primary, secondary & alternate'
 					code={ `
 <IcapToggler variant="primary" defaultChecked aria-label="Notifications" />
 <IcapToggler variant="secondary" defaultChecked aria-label="Notifications" />
+<IcapToggler variant="alternate" defaultChecked aria-label="Notifications" />
 <IcapToggler aria-label="Notifications" />` }>
 					<IcapToggler variant='primary' defaultChecked aria-label='Notifications'/>
 					<IcapToggler variant='secondary' defaultChecked aria-label='Notifications'/>
+					<IcapToggler variant='alternate' defaultChecked aria-label='Notifications'/>
 					<IcapToggler aria-label='Notifications'/>
 				</Example>
 

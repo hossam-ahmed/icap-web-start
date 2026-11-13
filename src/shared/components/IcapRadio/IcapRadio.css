@@ -51,6 +51,22 @@
             }
         }
 
+        &.alternate .radio-input {
+            @apply border-alternate-800 outline-color-alternate-default;
+
+            &:not(:disabled):hover {
+                @apply border-alternate-900;
+            }
+
+            &:checked {
+                @apply border-alternate-800;
+            }
+
+            &:checked:not(:disabled):hover {
+                @apply border-alternate-900;
+            }
+        }
+
         /* Disabled: driven by the native attribute */
         &:has(.radio-input:disabled) {
             @apply cursor-not-allowed opacity-50;

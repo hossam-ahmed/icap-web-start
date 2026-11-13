@@ -19,6 +19,16 @@
   --color-secondary-700: rgb(143, 59, 15);
   --color-secondary-800: rgb(132, 50, 12);
   --color-secondary-900: rgb(122, 40, 8);
+  --color-alternate-50: rgb(253, 251, 250);
+  --color-alternate-100: rgb(252, 249, 247);
+  --color-alternate-200: rgb(249, 244, 241);
+  --color-alternate-300: rgb(246, 238, 232);
+  --color-alternate-400: rgb(241, 229, 220);
+  --color-alternate: rgba(234, 215, 202, 0.6);
+  --color-alternate-600: rgb(227, 204, 188);
+  --color-alternate-700: rgb(223, 196, 178);
+  --color-alternate-800: rgb(220, 190, 171);
+  --color-alternate-900: rgb(217, 186, 166);
   --color-success-50: rgb(214, 236, 210);
   --color-success-100: rgb(195, 227, 189);
   --color-success-200: rgb(156, 209, 147);

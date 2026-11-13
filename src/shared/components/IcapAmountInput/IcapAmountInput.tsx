@@ -58,7 +58,7 @@ const parse = (text: string): number | null => {
  * Its width follows the content through the native `size` attribute, so it scales with the
  * font size (e.g. a `text-2xl` class makes the font, width and height bigger together).
  */
-export const AmountInput = ({
+export const IcapAmountInput = ({
 	value,
 	defaultValue = null,
 	onValueChange,

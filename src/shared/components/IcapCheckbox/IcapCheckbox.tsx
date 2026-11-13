@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import "./IcapCheckbox.css";
 
-export type IcapCheckboxVariants = "primary" | "secondary";
+export type IcapCheckboxVariants = "primary" | "secondary" | "alternate";
 export type IcapCheckboxProps = Omit<ComponentProps<"input">, "type" | "children"> & {
 	variant?: IcapCheckboxVariants;
 	/** Optional label rendered next to the box; clicking it toggles the checkbox. */

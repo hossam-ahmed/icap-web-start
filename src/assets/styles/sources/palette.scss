@@ -80,12 +80,14 @@ $max-shade: 90%;
 // primary
 $primary-base: #f2d793;
 $secondary-base: #a44f17;
+$alternate-base: #EAD7CA99;
 $success-base: #289A14;
 $error-base: #E54C34;
 
 $palettes: (
         "primary": $primary-base,
         "secondary": $secondary-base,
+        "alternate": $alternate-base,
         "success": $success-base,
         "error": $error-base
 );

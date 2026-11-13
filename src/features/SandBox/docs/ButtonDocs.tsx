@@ -5,9 +5,15 @@ import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsT
 const buttonProps: PropDoc[] = [
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary"`,
+		type       : `"primary" | "secondary" | "alternate" | "transparent"`,
 		default    : `"primary"`,
 		description: "Visual style of the button. Added as a CSS class next to `icap-button`."
+	},
+	{
+		name       : "outlined",
+		type       : "boolean",
+		default    : "false",
+		description: "Transparent background with a border in the variant's color."
 	},
 	{
 		name       : "type",
@@ -40,12 +46,31 @@ export const ButtonDocs = () => {
 
 			<DocSection title='Variants'>
 				<Example
-					title='Primary & secondary'
+					title='Primary, secondary, alternate & transparent'
 					code={ `
 <IcapButton variant="primary">Primary</IcapButton>
-<IcapButton variant="secondary">Secondary</IcapButton>` }>
+<IcapButton variant="secondary">Secondary</IcapButton>
+<IcapButton variant="alternate">Alternate</IcapButton>
+<IcapButton variant="transparent">Transparent</IcapButton>` }>
 					<IcapButton variant='primary'>Primary</IcapButton>
 					<IcapButton variant='secondary'>Secondary</IcapButton>
+					<IcapButton variant='alternate'>Alternate</IcapButton>
+					<IcapButton variant='transparent'>Transparent</IcapButton>
+				</Example>
+
+				<Example
+					title='Outlined'
+					code={ `
+<IcapButton variant="primary" outlined>Primary</IcapButton>
+<IcapButton variant="secondary" outlined>Secondary</IcapButton>
+<IcapButton variant="alternate" outlined>Alternate</IcapButton>
+<IcapButton variant="transparent" outlined>Transparent</IcapButton>
+<IcapButton outlined disabled>Disabled</IcapButton>` }>
+					<IcapButton variant='primary' outlined>Primary</IcapButton>
+					<IcapButton variant='secondary' outlined>Secondary</IcapButton>
+					<IcapButton variant='alternate' outlined>Alternate</IcapButton>
+					<IcapButton variant='transparent' outlined>Transparent</IcapButton>
+					<IcapButton outlined disabled>Disabled</IcapButton>
 				</Example>
 			</DocSection>
 

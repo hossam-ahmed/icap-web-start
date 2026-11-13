@@ -1,0 +1,94 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    .icap-select {
+        @apply relative inline-flex;
+
+        /* normalize.css fixes every span's font-size/color; let the parts follow their containers */
+        & span {
+            font-size: inherit;
+            color: inherit;
+        }
+
+        /* ---------- trigger ---------- */
+
+        /*
+         * The trigger is an IcapButton (colors, hover, focus, outlined and disabled come from there).
+         * Only the select-specific layout is set here; the extra classes beat IcapButton's padding/size.
+         */
+        .icap-button.select-trigger {
+            @apply inline-flex items-center justify-between gap-3 w-full min-w-0 px-5 py-4 text-start;
+            font-size: inherit;
+        }
+
+        .select-value {
+            @apply min-w-0 truncate;
+
+            &.placeholder {
+                @apply text-neutral-500;
+            }
+        }
+
+        .select-chevron {
+            @apply shrink-0;
+            transition: rotate .25s ease;
+        }
+
+        &.open .select-chevron {
+            rotate: 180deg;
+        }
+
+        &.invalid .icap-button.select-trigger {
+            @apply border-error;
+        }
+
+        /* ---------- list ---------- */
+
+        .select-list {
+            @apply absolute top-[calc(100%+6px)] start-0 z-20 min-w-full max-h-72 overflow-y-auto m-0 p-1.5 list-none
+                   bg-white border-default rounded-default gap-1.5 flex flex-col;
+            width: max-content;
+            max-width: min(24rem, calc(100vw - 2rem));
+            box-shadow: 0 10px 30px rgb(0 0 0 / .08);
+        }
+
+        .select-option {
+            @apply flex items-center justify-between gap-4 w-full px-3.5 py-2.5 text-start bg-transparent border-0 rounded-xl
+                   text-color-default outline-0 cursor-pointer;
+            font-size: inherit;
+            transition: background-color .15s ease;
+
+            &:hover:not(:disabled),
+            &:focus-visible {
+                @apply bg-primary-50/70;
+            }
+
+            &.selected {
+                @apply bg-primary-200;
+            }
+
+            &:disabled {
+                @apply opacity-50 cursor-not-allowed;
+            }
+        }
+
+        .select-option-content {
+            @apply min-w-0;
+        }
+
+        .select-option-check {
+            @apply shrink-0 size-4 text-secondary opacity-0;
+        }
+
+        .select-option.selected .select-option-check {
+            @apply opacity-100;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-select .select-chevron,
+        .icap-select .select-option {
+            transition: none;
+        }
+    }
+}

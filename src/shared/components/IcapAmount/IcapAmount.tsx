@@ -1,6 +1,6 @@
 import type { ComponentProps, CSSProperties } from "react";
 import { IcapIcon } from "@shared/components/IcapIcon";
-import { AmountInput, type AmountInputProps } from "@shared/components/AmountInput";
+import { IcapAmountInput, type AmountInputProps } from "@shared/components/IcapAmountInput";
 import "./Amount.css";
 
 export type AmountVariants = "flat" | "field";
@@ -106,7 +106,7 @@ const AmountEditable = ({
 	// A <label>, so clicking anywhere in the field (e.g. the icon) focuses the input
 	<label dir='ltr' className={ `icap-amount editable ${ variant } ${ className }` } style={ style }>
 		{ showCurrency && <Currency/> }
-		<AmountInput
+		<IcapAmountInput
 			className={ `amount-input ${ inputClassName }` }
 			value={ amount }
 			defaultValue={ defaultAmount }

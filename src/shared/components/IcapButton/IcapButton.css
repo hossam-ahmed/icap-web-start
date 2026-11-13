@@ -4,7 +4,8 @@
 
 @layer components {
     .icap-button {
-        @apply p-3 min-w-[100px] outline-0 relative rounded-default isolate overflow-hidden;
+        /* Transparent border on every button, so outlined and filled buttons have the same size */
+        @apply p-3 min-w-[100px] outline-0 relative rounded-default isolate overflow-hidden border border-transparent;
 
         /* Shadow tint; each variant sets its own */
         --btn-glow: var(--color-primary);
@@ -49,12 +50,63 @@
 
         &.primary {
             --btn-glow: var(--color-primary);
-            @apply bg-primary text-color-default disabled:bg-primary-200 hover:bg-primary-700 active:bg-primary-900 outline-color-primary-default focus:outline-3;
+            @apply bg-primary text-color-default disabled:bg-primary-200 hover:not-disabled:bg-primary-700 active:not-disabled:bg-primary-900 outline-color-primary-default focus:outline-3;
         }
 
         &.secondary {
             --btn-glow: var(--color-secondary);
-            @apply bg-secondary text-secondary-100 disabled:bg-secondary-200 hover:bg-secondary-700 active:bg-secondary-900 outline-color-secondary-default focus:outline-3;
+            @apply bg-secondary text-secondary-100 disabled:bg-secondary-200 hover:not-disabled:bg-secondary-700 active:not-disabled:bg-secondary-900 outline-color-secondary-default focus:outline-3;
+        }
+
+        &.alternate {
+            --btn-glow: var(--color-alternate-800);
+            @apply bg-alternate text-color-default disabled:bg-alternate-200 hover:not-disabled:bg-alternate-600 active:not-disabled:bg-alternate-800 outline-color-alternate-default focus:outline-3;
+        }
+
+        /* Transparent: no background or border; a faint tint only on hover/press (no glow, no sheen) */
+        &.transparent {
+            --btn-glow: transparent;
+            @apply bg-transparent text-color-default hover:not-disabled:bg-neutral-900/5 active:not-disabled:bg-neutral-900/10 outline-color-primary-default focus:outline-3;
+
+            &:disabled {
+                @apply opacity-50;
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+
+        /* ---------- outlined: transparent background, border in the variant's color ---------- */
+
+        &.outlined {
+            @apply bg-transparent;
+
+            &:disabled {
+                @apply bg-transparent opacity-50;
+            }
+
+            /* The sheen is white; on a transparent background it would look like a flash */
+            &::before {
+                display: none;
+            }
+        }
+
+        &.primary.outlined {
+            @apply border-primary-700 text-color-default hover:bg-primary-50 active:bg-primary-100;
+        }
+
+        &.secondary.outlined {
+            @apply border-secondary-300 text-secondary hover:bg-secondary-50/50 active:bg-secondary-50;
+        }
+
+        &.alternate.outlined {
+            @apply border-alternate-800 text-color-default hover:bg-alternate-100 active:bg-alternate-300;
+        }
+
+        /* Transparent + outlined: the neutral default border */
+        &.transparent.outlined {
+            @apply border-color-primary hover:bg-neutral-900/5 active:bg-neutral-900/10;
         }
     }
 
