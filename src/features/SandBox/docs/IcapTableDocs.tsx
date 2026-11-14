@@ -10,6 +10,7 @@ import {
 } from "@shared/components/IcapTable";
 import { IcapAmount } from "@shared/components/IcapAmount";
 import { IcapButton } from "@shared/components/IcapButton";
+import { MarketTicker } from "@shared/components/MarketTicker";
 import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 type Fund = { id: string; name: string; change: number; units: number; unitPrice: number; marketValue: number };
@@ -21,15 +22,6 @@ const funds: Fund[] = [
 	{ id: "4", name: "Alistithmar Capital MENA Equity Fund", change: 5.25, units: 3475.1836, unitPrice: 90.5263, marketValue: 145.2 },
 	{ id: "5", name: "Alistithmar Capital Freestyle Saudi Equity Fund", change: -5.25, units: 1274.19, unitPrice: 43.3746, marketValue: 50.2 }
 ];
-
-const Change = ({ value }: { value: number }) => (
-	<span className={ `inline-flex items-center gap-1.5 ${ value >= 0 ? "text-success" : "text-error" }` }>
-		{ value >= 0 ? "+" : "" }{ value.toFixed(2) }%
-		<svg viewBox='0 0 10 8' className='w-2.5 h-2' aria-hidden='true'>
-			<path d={ value >= 0 ? "M5 0l5 8H0z" : "M5 8 0 0h10z" } fill='currentColor'/>
-		</svg>
-	</span>
-);
 
 const tableProps: PropDoc[] = [
 	{ name: "sort", type: "{ key, direction } | null", description: "Current sort (controlled)." },
@@ -92,7 +84,9 @@ const sortedFunds = useMemo(() => sortBy(funds, sort), [sort]);
     {sortedFunds.map(fund => (
       <IcapTableRow key={fund.id} hoverable>
         <IcapTableRowCell>{fund.name}</IcapTableRowCell>
-        <IcapTableRowCell align="end"><Change value={fund.change} /></IcapTableRowCell>
+        <IcapTableRowCell align="end">
+          <MarketTicker amount={fund.change} decimals={2} suffix="%" arrowPosition="end" transparent className="p-0" />
+        </IcapTableRowCell>
         …
       </IcapTableRow>
     ))}
@@ -112,7 +106,9 @@ const sortedFunds = useMemo(() => sortBy(funds, sort), [sort]);
 								{ sortedFunds.map(fund => (
 									<IcapTableRow key={ fund.id } hoverable>
 										<IcapTableRowCell className='min-w-56'>{ fund.name }</IcapTableRowCell>
-										<IcapTableRowCell align='end'><Change value={ fund.change }/></IcapTableRowCell>
+										<IcapTableRowCell align='end'>
+											<MarketTicker amount={ fund.change } decimals={ 2 } suffix='%' arrowPosition='end' transparent className='p-0'/>
+										</IcapTableRowCell>
 										<IcapTableRowCell align='end'>
 											{ new Intl.NumberFormat("en-US", { minimumFractionDigits: 4 }).format(fund.units) }
 										</IcapTableRowCell>

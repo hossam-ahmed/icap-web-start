@@ -59,7 +59,7 @@
 
             &:hover:not(:disabled),
             &:focus-visible {
-                @apply bg-primary-50/70;
+                @apply bg-neutral-100;
             }
 
             &.selected {

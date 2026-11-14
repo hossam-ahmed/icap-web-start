@@ -4,6 +4,7 @@
  */
 
 @layer base {
+
     /* Smooth scrolling for anchors / scrollTo, unless the user prefers reduced motion */
     html {
         scroll-behavior: smooth;

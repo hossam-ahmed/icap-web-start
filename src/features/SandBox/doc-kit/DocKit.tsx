@@ -1,4 +1,6 @@
 import { type PropsWithChildren, type ReactNode, useState } from "react";
+import { IcapCard } from "@shared/components/IcapCard";
+import { IcapButton } from "@shared/components/IcapButton";
 
 /* ------------------------------------------------------------------ */
 /* Types                                                               */
@@ -78,7 +80,8 @@ export const CodeBlock = ({ code }: { code: string }) => {
 };
 
 export const InlineCode = ({ children }: PropsWithChildren) => (
-	<code className='bg-neutral-100 text-primary-700 rounded px-1 py-0.5 text-[0.9em]'>{ children }</code>
+	<code
+		className='bg-neutral-100 text-primary-700 rounded px-1 py-0.5 text-[0.9em]'>{ children }</code>
 );
 
 /* ------------------------------------------------------------------ */
@@ -94,28 +97,36 @@ type ExampleProps = PropsWithChildren<{
 	contentClassName?: string;
 }>;
 
-export const Example = ({ title, className, contentClassName, description, code, children }: ExampleProps) => {
+export const Example = ({
+	title,
+	className = '',
+	contentClassName,
+	description,
+	code,
+	children
+}: ExampleProps) => {
 	const [showCode, setShowCode] = useState(false);
 
 	return (
-		<div className={`border border-neutral-200 rounded-lg overflow-hidden ${className}`}>
-			<div className='px-4 py-3 border-b border-neutral-200 bg-neutral-50'>
+		<IcapCard className={ className }>
+			<IcapCard.Header bordered>
 				<h3 className='font-medium text-neutral-900'>{ title }</h3>
 				{ description && <p className='text-sm text-neutral-600'>{ description }</p> }
-			</div>
-			<div className={`p-6 flex flex-wrap items-center gap-4 bg-white ${contentClassName}`}>
+			</IcapCard.Header>
+			<IcapCard.Content className={ contentClassName }>
 				{ children }
-			</div>
-			<div className='border-t border-neutral-200'>
-				<button
+			</IcapCard.Content>
+			<IcapCard.Footer className='p-0 bg-alternate-200'>
+				<IcapButton
 					type='button'
+					variant='transparent'
 					onClick={ () => setShowCode(v => !v) }
-					className='w-full text-left bg-neutral-200 text-sm px-4 py-2 text-neutral-700 hover:bg-neutral-300 transition-colors'>
+					className='w-full text-center text-sm text-neutral-700'>
 					{ showCode ? "Hide code" : "Show code" }
-				</button>
+				</IcapButton>
 				{ showCode && <div className='p-4 bg-white/80'><CodeBlock code={ code }/></div> }
-			</div>
-		</div>
+			</IcapCard.Footer>
+		</IcapCard>
 	);
 };
 
@@ -128,25 +139,26 @@ export const PropsTable = ({ props, note }: { props: PropDoc[]; note?: ReactNode
 		<div className='overflow-x-auto border border-neutral-200 rounded-lg'>
 			<table className='w-full text-sm text-left'>
 				<thead className='bg-neutral-50 text-neutral-700'>
-					<tr>
-						<th className='px-4 py-2 font-semibold'>Prop</th>
-						<th className='px-4 py-2 font-semibold'>Type</th>
-						<th className='px-4 py-2 font-semibold'>Default</th>
-						<th className='px-4 py-2 font-semibold'>Description</th>
-					</tr>
+				<tr>
+					<th className='px-4 py-2 font-semibold'>Prop</th>
+					<th className='px-4 py-2 font-semibold'>Type</th>
+					<th className='px-4 py-2 font-semibold'>Default</th>
+					<th className='px-4 py-2 font-semibold'>Description</th>
+				</tr>
 				</thead>
 				<tbody>
-					{ props.map(prop => (
-						<tr key={ prop.name } className='border-t border-neutral-200 align-top'>
-							<td className='px-4 py-2 whitespace-nowrap'>
-								<InlineCode>{ prop.name }</InlineCode>
-								{ prop.required && <span className='text-red-600 ms-1'>*</span> }
-							</td>
-							<td className='px-4 py-2 font-mono text-xs text-neutral-700'>{ prop.type }</td>
-							<td className='px-4 py-2 font-mono text-xs text-neutral-500'>{ prop.default ?? "—" }</td>
-							<td className='px-4 py-2 text-neutral-700'>{ prop.description }</td>
-						</tr>
-					)) }
+				{ props.map(prop => (
+					<tr key={ prop.name } className='border-t border-neutral-200 align-top'>
+						<td className='px-4 py-2 whitespace-nowrap'>
+							<InlineCode>{ prop.name }</InlineCode>
+							{ prop.required && <span className='text-red-600 ms-1'>*</span> }
+						</td>
+						<td className='px-4 py-2 font-mono text-xs text-neutral-700'>{ prop.type }</td>
+						<td className='px-4 py-2 font-mono text-xs text-neutral-500'>{ prop.default ??
+						                                                               "—" }</td>
+						<td className='px-4 py-2 text-neutral-700'>{ prop.description }</td>
+					</tr>
+				)) }
 				</tbody>
 			</table>
 		</div>
@@ -163,7 +175,9 @@ const calloutStyles = {
 	warning: "border-amber-300 bg-amber-50 text-amber-900"
 } as const;
 
-export const Callout = ({ type = "info", children }: PropsWithChildren<{ type?: keyof typeof calloutStyles }>) => (
+export const Callout = ({ type = "info", children }: PropsWithChildren<{
+	type?: keyof typeof calloutStyles
+}>) => (
 	<div className={ `border-s-4 rounded-md px-4 py-3 text-sm ${ calloutStyles[type] }` }>
 		{ children }
 	</div>

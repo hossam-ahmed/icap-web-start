@@ -1,8 +1,26 @@
 @reference "@styles/tailwind/index.css";
 
 @layer components {
+    /* inline-flex so it sits inline with text and follows text-align (e.g. end-aligned table cells) */
     .icap-market-ticker {
-        @apply bg-neutral-100;
+        @apply inline-flex items-center p-2 rounded-lg bg-neutral-100 whitespace-nowrap;
+
+        /* normalize.css fixes every span's font-size; let the parts follow the ticker */
+        & span {
+            font-size: inherit;
+        }
+
+        .ticker-sign {
+            @apply me-0.5;
+        }
+
+        .ticker-arrow.start {
+            @apply me-3;
+        }
+
+        .ticker-arrow.end {
+            @apply ms-1.5;
+        }
 
         &.transparent {
             @apply bg-transparent;

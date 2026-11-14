@@ -15,10 +15,4 @@
 
     /*border color*/
     --border-color-primary: #E8E2DB;
-
-    /*scrollbar*/
-    --scrollbar-track: transparent;
-    --scrollbar-thumb: var(--color-secondary-200);
-    --scrollbar-thumb-hover: var(--color-secondary-400);
-    --scrollbar-thumb-active: var(--color-secondary);
 }

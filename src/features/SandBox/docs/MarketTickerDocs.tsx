@@ -24,8 +24,29 @@ const marketTickerProps: PropDoc[] = [
 		name       : "transparent",
 		type       : "boolean",
 		default    : "false",
-		description: <>Drops the <InlineCode>trend-up</InlineCode> / <InlineCode>trend-down</InlineCode> styling, so the
-			ticker renders without the green/red pill background and colors. The arrow and sign are still shown.</>
+		description: <>Removes the pill background. The text, sign and arrow stay green/red.</>
+	},
+	{
+		name       : "decimals",
+		type       : "number",
+		default    : "as-is",
+		description: <>Fixed number of decimal places, e.g. <InlineCode>2</InlineCode> → <InlineCode>5.20</InlineCode>.</>
+	},
+	{
+		name       : "suffix",
+		type       : "ReactNode",
+		description: <>Shown right after the number, e.g. <InlineCode>"%"</InlineCode>.</>
+	},
+	{
+		name       : "arrowPosition",
+		type       : `"start" | "end"`,
+		default    : `"start"`,
+		description: "Arrow before the sign, or after the number."
+	},
+	{
+		name       : "...rest",
+		type       : `ComponentProps<"div">`,
+		description: <>Forwarded to the wrapper (<InlineCode>className</InlineCode>, <InlineCode>aria-*</InlineCode>, …).</>
 	}
 ];
 
@@ -39,6 +60,7 @@ export const MarketTickerDocs = () => (
 
 		<DocSection title='Trends'>
 			<Example
+				contentClassName='flex flex-wrap items-center gap-3'
 				title='Up & down'
 				description='Positive amounts use the success palette; negative amounts use the error palette and flip the arrow.'
 				code={ `
@@ -49,6 +71,7 @@ export const MarketTickerDocs = () => (
 			</Example>
 
 			<Example
+				contentClassName='flex flex-wrap items-center gap-3'
 				title='Neutral'
 				description='Zero is neutral: a grey pill with just the number, no arrow or sign.'
 				code={ `<MarketTicker amount={0} />` }>
@@ -58,6 +81,7 @@ export const MarketTickerDocs = () => (
 
 		<DocSection title='Transparent'>
 			<Example
+				contentClassName='flex flex-wrap items-center gap-3'
 				title='Without trend styling'
 				description='Use transparent when the ticker sits on a colored surface or inline with text and the pill background would be too heavy.'
 				code={ `
@@ -72,10 +96,16 @@ export const MarketTickerDocs = () => (
 
 		<DocSection title='Formatting'>
 			<Example
-				title='Pre-format the value'
-				description='The amount is rendered as-is, so round it before passing it in if you need fixed decimals.'
-				code={ `<MarketTicker amount={Number(change.toFixed(2))} />` }>
-				<MarketTicker amount={ Number((3.14159).toFixed(2)) }/>
+				contentClassName='flex flex-wrap items-center gap-3'
+				title='Decimals, suffix & arrow position'
+				description='E.g. a percentage change in a table: fixed decimals, a % suffix, the arrow after the number, no pill.'
+				code={ `
+<MarketTicker amount={3.14159} decimals={2} />
+<MarketTicker amount={5.25} decimals={2} suffix="%" arrowPosition="end" />
+<MarketTicker amount={-5.25} decimals={2} suffix="%" arrowPosition="end" transparent />` }>
+				<MarketTicker amount={ 3.14159 } decimals={ 2 }/>
+				<MarketTicker amount={ 5.25 } decimals={ 2 } suffix='%' arrowPosition='end'/>
+				<MarketTicker amount={ -5.25 } decimals={ 2 } suffix='%' arrowPosition='end' transparent/>
 			</Example>
 		</DocSection>
 
