@@ -24,6 +24,7 @@
 
     a, button {
         cursor: pointer;
+        @apply outline-color-primary-default;
 
         &:disabled {
             cursor: auto;

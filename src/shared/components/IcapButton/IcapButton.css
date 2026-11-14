@@ -7,6 +7,15 @@
         /* Transparent border on every button, so outlined and filled buttons have the same size */
         @apply p-3 min-w-[100px] outline-0 relative rounded-default isolate overflow-hidden border border-transparent;
 
+        /*
+         * normalize.css gives every <span> a fixed color and font-size, so icons (IcapIcon is a span) and
+         * labels inside the button would ignore the variant's text color and text-* classes. Inherit instead.
+         */
+        & span {
+            color: inherit;
+            font-size: inherit;
+        }
+
         /* Shadow tint; each variant sets its own */
         --btn-glow: var(--color-primary);
 
@@ -34,7 +43,7 @@
 
         &:not(:disabled):hover {
             /*transform: translateY(-2px);*/
-            box-shadow: 0 6px 16px -4px color-mix(in srgb, var(--btn-glow) 55%, transparent);
+            /*box-shadow: 0 6px 16px -4px color-mix(in srgb, var(--btn-glow) 55%, transparent);*/
 
             &::before {
                 transform: translateX(100%);
@@ -44,7 +53,7 @@
 
         &:not(:disabled):active {
             /*transform: translateY(0);*/
-            box-shadow: 0 2px 6px -2px color-mix(in srgb, var(--btn-glow) 45%, transparent);
+            /*box-shadow: 0 2px 6px -2px color-mix(in srgb, var(--btn-glow) 45%, transparent);*/
             transition-duration: 0.1s;
         }
 
@@ -77,6 +86,37 @@
             }
         }
 
+        /*
+         * Gradient: secondary shades, from secondary-600 at the start to secondary-900 at the end.
+         * The gradient is twice as wide as the button, so only its first half (600 → 900) shows at rest;
+         * hover/press slide it toward the darker second half (a gradient can't be transitioned, its position can).
+         */
+        &.gradient {
+            --btn-glow: var(--color-secondary);
+            @apply text-white outline-color-secondary-default focus:outline-3;
+            background-image: linear-gradient(
+                    100deg,
+                    var(--color-secondary-600) 0%,
+                    var(--color-secondary-900) 50%,
+                    color-mix(in srgb, var(--color-secondary-900), black 30%) 100%
+            );
+            background-size: 200% 100%;
+            background-position: 0% 0;
+            transition: background-position .4s ease; /*box-shadow .3s ease, color .3s ease*/
+
+            &:not(:disabled):hover {
+                background-position: 50% 0;
+            }
+
+            &:not(:disabled):active {
+                background-position: 100% 0;
+            }
+
+            &:disabled {
+                @apply opacity-50;
+            }
+        }
+
         /* ---------- outlined: transparent background, border in the variant's color ---------- */
 
         &.outlined {
@@ -102,6 +142,24 @@
 
         &.alternate.outlined {
             @apply border-alternate-800 text-color-default hover:bg-alternate-100 active:bg-alternate-300;
+        }
+
+        /* Gradient + outlined: gradient border (a 1px ring masked out of ::before) and brown text */
+        &.gradient.outlined {
+            @apply text-secondary hover:not-disabled:bg-secondary-50/50 active:not-disabled:bg-secondary-50;
+            background-image: none;
+            /* The ring sits on the 1px border, outside the padding box that overflow:hidden would clip to */
+            overflow: visible;
+
+            &::before {
+                display: block;
+                inset: -1px;
+                padding: 1px;
+                border-radius: inherit;
+                transform: none;
+                background: linear-gradient(100deg, var(--color-secondary-600), var(--color-secondary-900));
+                mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+            }
         }
 
         /* Transparent + outlined: the neutral default border */

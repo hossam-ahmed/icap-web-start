@@ -1,0 +1,109 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    /* The card's inner white border frames the table; rows run edge to edge inside it */
+    .icap-table-card {
+        @apply min-w-0;
+    }
+
+    .icap-table-scroll {
+        @apply w-full overflow-x-auto;
+        /* Follow the card's corners so striped rows don't poke out at the bottom */
+        border-radius: calc(var(--radius-default) - var(--card-inner-border));
+    }
+
+    .icap-table {
+        @apply w-full border-collapse border-0;
+        /* normalize.css sets line-height: 1 on most elements, which cramps wrapped cell text */
+        line-height: 1.45;
+
+        /* normalize.css fixes span/div font-size, color and line-height; let cell content follow the cell */
+
+        & span,
+        & div {
+            font-size: inherit;
+            color: inherit;
+            line-height: inherit;
+        }
+
+        .align-start {
+            @apply text-start;
+        }
+
+        .align-center {
+            @apply text-center;
+        }
+
+        .align-end {
+            @apply text-end;
+        }
+
+        /* ---------- header ---------- */
+
+        .icap-table-header-cell {
+            @apply px-6 py-5 font-normal text-neutral-500 whitespace-nowrap;
+        }
+
+        .icap-table-sort {
+            @apply inline-flex items-center gap-1 p-0 m-0 bg-transparent border-0 rounded-sm text-inherit cursor-pointer outline-0;
+            font: inherit;
+            transition: color .2s ease;
+
+            &:hover,
+            &.sorted {
+                @apply text-neutral-800;
+            }
+
+            &:focus-visible {
+                @apply outline-2 outline-offset-2 outline-color-primary-default;
+            }
+        }
+
+        .icap-table-sort-icon {
+            @apply w-[0.55em] h-[0.9em] shrink-0;
+
+            path {
+                fill: currentColor;
+                opacity: .45;
+                transition: opacity .2s ease;
+            }
+
+            path.active {
+                opacity: 1;
+            }
+        }
+
+        /* ---------- body ---------- */
+
+        .icap-table-row-cell {
+            @apply px-6 py-4 text-neutral-800;
+        }
+
+        /* Alternating rows: the darker ones get top and bottom borders in the default border color */
+
+        .icap-table-body .icap-table-row:nth-child(odd) {
+            @apply bg-alternate-200 border-y border-color-primary;
+
+            &:last-child {
+                @apply border-b-0;
+            }
+        }
+
+        .icap-table-row.hoverable {
+            @apply cursor-pointer;
+            transition: background-color .15s ease;
+
+            &:hover {
+                @apply bg-primary-50;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-table .icap-table-sort,
+        .icap-table .icap-table-sort-icon path,
+        .icap-table .icap-table-row.hoverable {
+            transition: none;
+        }
+    }
+}

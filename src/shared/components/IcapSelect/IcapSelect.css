@@ -45,8 +45,7 @@
         /* ---------- list ---------- */
 
         .select-list {
-            @apply absolute top-[calc(100%+6px)] start-0 z-20 min-w-full max-h-72 overflow-y-auto m-0 p-1.5 list-none
-                   bg-white border-default rounded-default gap-1.5 flex flex-col;
+            @apply absolute top-[calc(100%+6px)] start-0 z-20 min-w-full max-h-72 overflow-y-auto m-0 p-1.5 list-none gap-1.5 flex flex-col;
             width: max-content;
             max-width: min(24rem, calc(100vw - 2rem));
             box-shadow: 0 10px 30px rgb(0 0 0 / .08);

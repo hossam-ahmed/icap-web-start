@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { IcapButton } from "@shared/components/IcapButton";
-import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
+import { IcapIcon } from "@shared/components/IcapIcon";
+import { DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 const buttonProps: PropDoc[] = [
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary" | "alternate" | "transparent"`,
+		type       : `"primary" | "secondary" | "alternate" | "transparent" | "gradient"`,
 		default    : `"primary"`,
 		description: "Visual style of the button. Added as a CSS class next to `icap-button`."
 	},
@@ -46,16 +47,18 @@ export const ButtonDocs = () => {
 
 			<DocSection title='Variants'>
 				<Example
-					title='Primary, secondary, alternate & transparent'
+					title='Primary, secondary, alternate, transparent & gradient'
 					code={ `
 <IcapButton variant="primary">Primary</IcapButton>
 <IcapButton variant="secondary">Secondary</IcapButton>
 <IcapButton variant="alternate">Alternate</IcapButton>
-<IcapButton variant="transparent">Transparent</IcapButton>` }>
+<IcapButton variant="transparent">Transparent</IcapButton>
+<IcapButton variant="gradient">Gradient</IcapButton>` }>
 					<IcapButton variant='primary'>Primary</IcapButton>
 					<IcapButton variant='secondary'>Secondary</IcapButton>
 					<IcapButton variant='alternate'>Alternate</IcapButton>
 					<IcapButton variant='transparent'>Transparent</IcapButton>
+					<IcapButton variant='gradient'>Gradient</IcapButton>
 				</Example>
 
 				<Example
@@ -65,12 +68,73 @@ export const ButtonDocs = () => {
 <IcapButton variant="secondary" outlined>Secondary</IcapButton>
 <IcapButton variant="alternate" outlined>Alternate</IcapButton>
 <IcapButton variant="transparent" outlined>Transparent</IcapButton>
+<IcapButton variant="gradient" outlined>Gradient</IcapButton>
 <IcapButton outlined disabled>Disabled</IcapButton>` }>
 					<IcapButton variant='primary' outlined>Primary</IcapButton>
 					<IcapButton variant='secondary' outlined>Secondary</IcapButton>
 					<IcapButton variant='alternate' outlined>Alternate</IcapButton>
 					<IcapButton variant='transparent' outlined>Transparent</IcapButton>
+					<IcapButton variant='gradient' outlined>Gradient</IcapButton>
 					<IcapButton outlined disabled>Disabled</IcapButton>
+				</Example>
+			</DocSection>
+
+			<DocSection title='Icons'>
+				<Example
+					title='Icon with text'
+					description='Lay out the icon and label with flex utilities. The icon follows the button text color and scales with its font size.'
+					code={ `
+<IcapButton variant="gradient" className="flex items-center justify-center gap-2 px-6">
+  <IcapIcon icon="trade" size="1.2em" />
+  Trade
+</IcapButton>
+<IcapButton variant="primary" outlined className="flex items-center justify-center gap-2">
+  <IcapIcon icon="download" size="1.2em" />
+  Download
+</IcapButton>
+<IcapButton variant="secondary" className="flex items-center justify-center gap-2">
+  Next
+  <IcapIcon icon="left-arrow" size="1.2em" className="ltr:-scale-x-100" />
+</IcapButton>` }>
+					<IcapButton variant='gradient' className='flex items-center justify-center gap-2 px-6'>
+						<IcapIcon icon='trade' size='1.2em'/>
+						Trade
+					</IcapButton>
+					<IcapButton variant='primary' outlined className='flex items-center justify-center gap-2'>
+						<IcapIcon icon='download' size='1.2em'/>
+						Download
+					</IcapButton>
+					<IcapButton variant='secondary' className='flex items-center justify-center gap-2'>
+						Next
+						<IcapIcon icon='left-arrow' size='1.2em' className='ltr:-scale-x-100'/>
+					</IcapButton>
+				</Example>
+
+				<Example
+					title='Icon only'
+					description='Reset the minimum width with min-w-0 and keep it square with aspect-square; add rounded-full for a circle. Always give icon-only buttons an aria-label.'
+					code={ `
+<IcapButton variant="alternate" className="min-w-0 aspect-square flex items-center justify-center" aria-label="Search">
+  <IcapIcon icon="search" size="1.25em" />
+</IcapButton>
+<IcapButton variant="transparent" className="min-w-0 aspect-square rounded-full flex items-center justify-center" aria-label="Notifications">
+  <IcapIcon icon="notifications" size="1.25em" />
+</IcapButton>` }>
+					<IcapButton variant='primary' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Download'>
+						<IcapIcon icon='download' size='1.25em'/>
+					</IcapButton>
+					<IcapButton variant='gradient' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Trade'>
+						<IcapIcon icon='trade' size='1.25em'/>
+					</IcapButton>
+					<IcapButton variant='alternate' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Search'>
+						<IcapIcon icon='search' size='1.25em'/>
+					</IcapButton>
+					<IcapButton variant='secondary' outlined className='min-w-0 aspect-square rounded-full flex items-center justify-center' aria-label='Customer service'>
+						<IcapIcon icon='customer-service' size='1.25em'/>
+					</IcapButton>
+					<IcapButton variant='transparent' className='min-w-0 aspect-square rounded-full flex items-center justify-center' aria-label='Notifications'>
+						<IcapIcon icon='notifications' size='1.25em'/>
+					</IcapButton>
 				</Example>
 			</DocSection>
 
@@ -126,9 +190,6 @@ const [count, setCount] = useState(0);
 				<PropsTable
 					props={ buttonProps }
 					note={ <>Also accepts every prop of <InlineCode>ComponentProps&lt;"button"&gt;</InlineCode>.</> }/>
-				<Callout type='warning'>
-					The <InlineCode>secondary</InlineCode> variant currently has the same styles as <InlineCode>primary</InlineCode> in <InlineCode>IcapButton.css</InlineCode>.
-				</Callout>
 			</DocSection>
 		</DocPage>
 	);

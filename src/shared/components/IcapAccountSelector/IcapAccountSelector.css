@@ -108,7 +108,7 @@
         /* ---------- list ---------- */
 
         .account-list {
-            @apply m-0 p-0 list-none bg-white border-default rounded-default overflow-hidden;
+            @apply m-0 p-0 list-none overflow-hidden;
 
             li + li {
                 @apply border-t border-color-primary;
@@ -140,7 +140,7 @@
         }
 
         .account-option.selected .account-radio {
-            @apply border-6 border-secondary;
+            @apply border-5 border-secondary;
         }
     }
 

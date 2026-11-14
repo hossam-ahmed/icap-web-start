@@ -10,7 +10,7 @@
 
     /*outline color*/
     --outline-color-primary-default: var(--color-primary-200);
-    --outline-color-secondary-default: var(--color-secondary-200);
+    --outline-color-secondary-default: var(--color-secondary-100);
     --outline-color-alternate-default: var(--color-alternate-400);
 
     /*border color*/

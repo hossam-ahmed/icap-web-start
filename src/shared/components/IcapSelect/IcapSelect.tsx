@@ -18,6 +18,7 @@ import {
 import { type ButtonVariants, IcapButton } from "@shared/components/IcapButton";
 import { IcapIcon } from "@shared/components/IcapIcon";
 import "./IcapSelect.css";
+import { IcapBoxPanel } from "@shared/components/IcapBoxPanel";
 
 /** An IcapButton variant, filled or outlined. */
 export type IcapSelectVariants = ButtonVariants | `${ ButtonVariants }-outlined`;
@@ -202,11 +203,11 @@ export const IcapSelect = ({
 
 			{ open && (
 				<ViewTransition>
-					<ul id={ listId } role='listbox' className='select-list'>
+					<IcapBoxPanel id={ listId } role='listbox' className='select-list'>
 						<SelectContext value={ { selectedValue, select } }>
 							{ children }
 						</SelectContext>
-					</ul>
+					</IcapBoxPanel>
 				</ViewTransition>
 			) }
 		</div>

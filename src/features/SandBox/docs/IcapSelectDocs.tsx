@@ -37,7 +37,7 @@ const selectProps: PropDoc[] = [
 	},
 	{
 		name       : "variant",
-		type       : `"primary" | "secondary" | "alternate" | "transparent" (each also as "…-outlined")`,
+		type       : `"primary" | "secondary" | "alternate" | "transparent" | "gradient" (each also as "…-outlined")`,
 		default    : `"alternate"`,
 		description: <>Trigger style. The trigger is an <InlineCode>IcapButton</InlineCode>: the variant sets its color, and
 			<InlineCode>-outlined</InlineCode> makes it outlined.</>

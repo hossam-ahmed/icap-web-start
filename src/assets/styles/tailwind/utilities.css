@@ -14,3 +14,6 @@
     background: url("@assets/images/Background.png") center;
     background-size: cover;
 }
+@utility box-shadow-default {
+    box-shadow: 0 0 7px .5px rgba(0, 0, 0, .05);
+}

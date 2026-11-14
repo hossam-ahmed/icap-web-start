@@ -12,6 +12,7 @@ import {
 import { IcapAmount } from "@shared/components/IcapAmount";
 import { IcapIcon } from "@shared/components/IcapIcon";
 import "./IcapAccountSelector.css";
+import { IcapBoxPanel } from "@shared/components/IcapBoxPanel";
 
 /** One account in the list. */
 export type IcapAccount = {
@@ -185,7 +186,7 @@ export const IcapAccountSelector = ({
 
 			{ open && (
 				<ViewTransition>
-					<ul id={ listId } role='listbox' className='account-list'>
+					<IcapBoxPanel id={ listId } role='listbox' className='account-list'>
 						{ accounts.map(account => {
 							const isSelected = account.id === selectedId;
 							return (
@@ -201,7 +202,7 @@ export const IcapAccountSelector = ({
 								</li>
 							);
 						}) }
-					</ul>
+					</IcapBoxPanel>
 				</ViewTransition>
 			) }
 		</div>

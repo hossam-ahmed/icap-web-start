@@ -9,6 +9,7 @@ import { IcapCheckboxDocs } from "./IcapCheckboxDocs.tsx";
 import { IcapIconDocs } from "./IcapIconDocs.tsx";
 import { IcapRadioDocs } from "./IcapRadioDocs.tsx";
 import { IcapSelectDocs } from "./IcapSelectDocs.tsx";
+import { IcapTableDocs } from "./IcapTableDocs.tsx";
 import { IcapTogglerDocs } from "./IcapTogglerDocs.tsx";
 import { IcapTooltipDocs } from "./IcapTooltipDocs.tsx";
 import { LoaderDocs } from "./LoaderDocs.tsx";
@@ -39,6 +40,7 @@ export const componentDocs: ComponentDocEntry[] = [
 	{ id: "icap-radio", name: "IcapRadio", page: IcapRadioDocs },
 	{ id: "tabs", name: "IcapTabGroup", page: TabsDocs },
 	{ id: "icap-select", name: "IcapSelect", page: IcapSelectDocs },
+	{ id: "icap-table", name: "IcapTable", page: IcapTableDocs },
 	{ id: "icap-toggler", name: "IcapToggler", page: IcapTogglerDocs },
 	{ id: "icap-tooltip", name: "IcapTooltip", page: IcapTooltipDocs },
 	{ id: "market-ticker", name: "MarketTicker", page: MarketTickerDocs }

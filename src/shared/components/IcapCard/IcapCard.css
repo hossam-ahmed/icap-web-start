@@ -5,9 +5,8 @@
         /* Width of the inner white border around all sides; the parts sit inside it */
         --card-inner-border: 3px;
 
-        @apply flex flex-col bg-white rounded-default;
+        @apply flex flex-col bg-white rounded-default box-shadow-default;
         padding: var(--card-inner-border);
-        box-shadow: 0 0 7px .5px rgba(0, 0, 0, .03);
 
         .card-header {
             @apply py-4 px-5 text-2xl font-light;

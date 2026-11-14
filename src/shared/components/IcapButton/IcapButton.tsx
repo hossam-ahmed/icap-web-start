@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import "./IcapButton.css"
 
-export type ButtonVariants = "primary" | "secondary" | "alternate" | "transparent";
+export type ButtonVariants = "primary" | "secondary" | "alternate" | "transparent" | "gradient";
 export type ButtonProps = ComponentProps<"button"> & {
 	variant?: ButtonVariants;
 	/** Transparent background with a border in the variant's color. Default: `false`. */
