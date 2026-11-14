@@ -17,6 +17,18 @@ const buttonProps: PropDoc[] = [
 		description: "Transparent background with a border in the variant's color."
 	},
 	{
+		name       : "size",
+		type       : `"sm" | "md" | "lg"`,
+		default    : `"md"`,
+		description: "sm: 30px tall, 12px text. md: 37px, 14px text. lg: 48px, 16px text."
+	},
+	{
+		name       : "iconOnly",
+		type       : "boolean",
+		default    : "false",
+		description: "A square button for a single icon, as tall as the size (30 / 37 / 48px). Give it an aria-label."
+	},
+	{
 		name       : "type",
 		type       : `"button" | "submit" | "reset"`,
 		default    : `"button"`,
@@ -79,6 +91,57 @@ export const ButtonDocs = () => {
 				</Example>
 			</DocSection>
 
+			<DocSection title='Sizes'>
+				<Example
+					title='Small, medium & large'
+					contentClassName='flex flex-wrap items-center gap-3'
+					code={ `
+<IcapButton size="sm">Small</IcapButton>
+<IcapButton size="md">Medium</IcapButton>
+<IcapButton size="lg">Large</IcapButton>` }>
+					<IcapButton size='sm'>Small</IcapButton>
+					<IcapButton size='md'>Medium</IcapButton>
+					<IcapButton size='lg'>Large</IcapButton>
+					<IcapButton size='sm' variant='gradient'>Small</IcapButton>
+					<IcapButton size='md' variant='gradient'>Medium</IcapButton>
+					<IcapButton size='lg' variant='gradient'>Large</IcapButton>
+				</Example>
+
+				<Example
+					title='With icons'
+					description='Icons sized in em follow the button size.'
+					contentClassName='flex flex-wrap items-center gap-3'
+					code={ `
+<IcapButton size="sm" variant="secondary" outlined className="flex items-center gap-1.5">
+  <IcapIcon icon="download" size="1.2em" /> Download
+</IcapButton>
+<IcapButton size="lg" variant="gradient" className="flex items-center gap-2">
+  <IcapIcon icon="trade" size="1.2em" /> Trade
+</IcapButton>
+<IcapButton size="sm" variant="alternate" iconOnly aria-label="Search">
+  <IcapIcon icon="search" size="1.2em" />
+</IcapButton>` }>
+					<IcapButton size='sm' variant='secondary' outlined className='flex items-center gap-1.5'>
+						<IcapIcon icon='download' size='1.2em'/> Download
+					</IcapButton>
+					<IcapButton size='md' variant='secondary' outlined className='flex items-center gap-2'>
+						<IcapIcon icon='download' size='1.2em'/> Download
+					</IcapButton>
+					<IcapButton size='lg' variant='gradient' className='flex items-center gap-2'>
+						<IcapIcon icon='trade' size='1.2em'/> Trade
+					</IcapButton>
+					<IcapButton size='sm' variant='alternate' iconOnly aria-label='Search'>
+						<IcapIcon icon='search' size='1.2em'/>
+					</IcapButton>
+					<IcapButton size='md' variant='alternate' iconOnly aria-label='Search'>
+						<IcapIcon icon='search' size='1.2em'/>
+					</IcapButton>
+					<IcapButton size='lg' variant='alternate' iconOnly aria-label='Search'>
+						<IcapIcon icon='search' size='1.2em'/>
+					</IcapButton>
+				</Example>
+			</DocSection>
+
 			<DocSection title='Icons'>
 				<Example
 					title='Icon with text'
@@ -112,27 +175,27 @@ export const ButtonDocs = () => {
 
 				<Example
 					title='Icon only'
-					description='Reset the minimum width with min-w-0 and keep it square with aspect-square; add rounded-full for a circle. Always give icon-only buttons an aria-label.'
+					description='iconOnly makes a square as tall as the size; add rounded-full for a circle. Always give icon-only buttons an aria-label.'
 					code={ `
-<IcapButton variant="alternate" className="min-w-0 aspect-square flex items-center justify-center" aria-label="Search">
+<IcapButton variant="alternate" iconOnly aria-label="Search">
   <IcapIcon icon="search" size="1.25em" />
 </IcapButton>
-<IcapButton variant="transparent" className="min-w-0 aspect-square rounded-full flex items-center justify-center" aria-label="Notifications">
+<IcapButton variant="transparent" iconOnly className="rounded-full" aria-label="Notifications">
   <IcapIcon icon="notifications" size="1.25em" />
 </IcapButton>` }>
-					<IcapButton variant='primary' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Download'>
+					<IcapButton variant='primary' iconOnly aria-label='Download'>
 						<IcapIcon icon='download' size='1.25em'/>
 					</IcapButton>
-					<IcapButton variant='gradient' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Trade'>
+					<IcapButton variant='gradient' iconOnly aria-label='Trade'>
 						<IcapIcon icon='trade' size='1.25em'/>
 					</IcapButton>
-					<IcapButton variant='alternate' className='min-w-0 aspect-square flex items-center justify-center' aria-label='Search'>
+					<IcapButton variant='alternate' iconOnly aria-label='Search'>
 						<IcapIcon icon='search' size='1.25em'/>
 					</IcapButton>
-					<IcapButton variant='secondary' outlined className='min-w-0 aspect-square rounded-full flex items-center justify-center' aria-label='Customer service'>
+					<IcapButton variant='secondary' outlined iconOnly className='rounded-full' aria-label='Customer service'>
 						<IcapIcon icon='customer-service' size='1.25em'/>
 					</IcapButton>
-					<IcapButton variant='transparent' className='min-w-0 aspect-square rounded-full flex items-center justify-center' aria-label='Notifications'>
+					<IcapButton variant='transparent' iconOnly className='rounded-full' aria-label='Notifications'>
 						<IcapIcon icon='notifications' size='1.25em'/>
 					</IcapButton>
 				</Example>

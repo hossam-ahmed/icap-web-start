@@ -17,7 +17,8 @@
          * Only the select-specific layout is set here; the extra classes beat IcapButton's padding/size.
          */
         .icap-button.select-trigger {
-            @apply inline-flex items-center justify-between gap-3 w-full min-w-0 px-5 py-4 text-start;
+            /* height: auto: the trigger's height comes from its padding (and the floating label), not the button size */
+            @apply inline-flex items-center justify-between gap-3 w-full h-auto min-w-0 px-5 py-4 text-start;
             font-size: inherit;
         }
 
@@ -40,6 +41,55 @@
 
         &.invalid .icap-button.select-trigger {
             @apply border-error;
+        }
+
+        /*
+         * ---------- floating label (same behavior, sizes and timing as IcapInput) ----------
+         * Rests where the value goes; floats to the top, smaller, when focused/open, with a value, or with a placeholder.
+         */
+        &.has-label .icap-button.select-trigger {
+            padding: 1.6em 1.15em .5em;
+            line-height: 1.4;
+        }
+
+        /*
+         * The label's top padding (1.6em vs .5em at the bottom) pushes the content down;
+         * shift the arrow back up by half the difference so it's centered in the whole field.
+         */
+        &.has-label .select-chevron {
+            translate: 0 -.55em;
+        }
+
+        /* Keep the value line's height even when it's empty, so the field doesn't shrink */
+        &.has-label .select-value {
+            min-height: 1.4em;
+        }
+
+        &.has-label .select-label {
+            @apply absolute max-w-[calc(100%-3.5em)] truncate pointer-events-none;
+            /* The trigger's own text color, dimmed: readable on every variant (light or brown) */
+            color: currentColor;
+            opacity: .65;
+            font-size: 1em;
+            line-height: 1.4;
+            inset-inline-start: 1.15em;
+            top: 50%;
+            translate: 0 -50%;
+            transition: top .2s ease, translate .2s ease, font-size .2s ease, inset-inline-start .2s ease, opacity .2s ease;
+        }
+
+        /* Floated only once an option is picked (or with a placeholder); focus/open don't move it */
+        &.has-label.floated .select-label {
+            font-size: .75em;
+            /* Field-relative offsets written in the label's own (0.75x) em, so they don't shrink with it */
+            top: calc(.55em / .75);
+            inset-inline-start: calc(1.15em / .75);
+            translate: 0 0;
+        }
+
+        &.invalid .select-label {
+            @apply text-error;
+            opacity: 1;
         }
 
         /* ---------- list ---------- */
@@ -85,6 +135,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+        .icap-select .select-label,
         .icap-select .select-chevron,
         .icap-select .select-option {
             transition: none;

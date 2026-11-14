@@ -9,6 +9,7 @@ import {
 	useRef
 } from "react";
 import "./IcapModal.css";
+import { IcapButton } from "@shared/components/IcapButton";
 
 export type ModalProps = Omit<ComponentProps<"dialog">, "open" | "onClose" | "onCancel"> & {
 	/** Whether the modal is shown (controlled). */
@@ -91,11 +92,11 @@ const ModalRoot = ({
 				</div>
 			</ModalContext>
 			{ closable && (
-				<button type='button' className='modal-close' aria-label={ closeLabel } onClick={ () => onClose?.() }>
-					<svg viewBox='0 0 24 24' aria-hidden='true' focusable='false'>
+				<IcapButton type='button' size='sm' className='modal-close bg-alternate-900' variant='alternate' iconOnly aria-label={ closeLabel } onClick={ () => onClose?.() }>
+					<svg viewBox='0 0 24 24' aria-hidden='true'>
 						<path d='M6 6l12 12M18 6L6 18' fill='none' stroke='#fff' strokeWidth='2.75' strokeLinecap='round'/>
 					</svg>
-				</button>
+				</IcapButton>
 			) }
 		</dialog>
 	);

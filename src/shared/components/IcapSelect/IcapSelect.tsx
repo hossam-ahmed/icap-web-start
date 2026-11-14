@@ -34,7 +34,13 @@ export type IcapSelectProps = {
 	onChange?: (value: string) => void;
 	/** Called when focus leaves the select (trigger and list). For form libraries ("touched"). */
 	onBlur?: (event: FocusEvent<HTMLDivElement>) => void;
-	/** Shown in the trigger when nothing is selected. */
+	/**
+	 * Floating label inside the trigger, styled like `IcapInput`'s: rests in the middle while nothing is
+	 * selected, and moves to the top, smaller, once an option is picked. Unlike `IcapInput`, focusing or
+	 * opening the select doesn't float it. With a placeholder it stays at the top, so both are visible.
+	 */
+	label?: ReactNode;
+	/** Shown in the trigger when nothing is selected. With a label, the label stays at the top. */
 	placeholder?: ReactNode;
 	/** Trigger style: an `IcapButton` variant, filled or `-outlined`. Default: `"alternate"`. */
 	variant?: IcapSelectVariants;
@@ -125,6 +131,7 @@ export const IcapSelect = ({
 	defaultValue = null,
 	onChange,
 	onBlur,
+	label,
 	placeholder,
 	variant = "alternate",
 	name,
@@ -135,7 +142,10 @@ export const IcapSelect = ({
 	"aria-label": ariaLabel,
 	ref
 }: IcapSelectProps) => {
-	const listId = `${ useId() }-list`;
+	const baseId = useId();
+	const listId = `${ baseId }-list`;
+	const labelId = `${ baseId }-label`;
+	const valueId = `${ baseId }-value`;
 	const rootRef = useRef<HTMLDivElement>(null);
 	const [open, setOpen] = useState(false);
 	const [internalValue, setInternalValue] = useState<string | null>(defaultValue);
@@ -146,6 +156,9 @@ export const IcapSelect = ({
 
 	const selectedValue = value !== undefined ? value : internalValue;
 	const selectedOption = findOptions(children).find(o => o.props.value === selectedValue);
+
+	// Label at the top only once an option is picked (or when a placeholder needs its spot); not on focus/open
+	const floated = !!selectedOption || placeholder !== undefined;
 
 	// Runs inside a transition so <ViewTransition> animates the list in/out
 	const setOpenAnimated = (next: boolean) => startTransition(() => setOpen(next));
@@ -179,7 +192,14 @@ export const IcapSelect = ({
 	return (
 		<div
 			ref={ rootRef }
-			className={ `icap-select ${ variant } ${ open ? "open" : "" } ${ invalid ? "invalid" : "" } ${ className }` }
+			className={ [
+				"icap-select", variant,
+				open ? "open" : "",
+				label ? "has-label" : "",
+				label && floated ? "floated" : "",
+				invalid ? "invalid" : "",
+				className
+			].join(" ") }
 			onBlur={ handleBlur }>
 			{ name && <input type='hidden' name={ name } value={ selectedValue ?? "" }/> }
 
@@ -192,10 +212,12 @@ export const IcapSelect = ({
 				aria-haspopup='listbox'
 				aria-expanded={ open }
 				aria-controls={ listId }
-				aria-label={ ariaLabel }
+				aria-label={ label ? undefined : ariaLabel }
+				aria-labelledby={ label ? `${ labelId } ${ valueId }` : undefined }
 				aria-invalid={ invalid || undefined }
 				onClick={ () => setOpenAnimated(!open) }>
-				<span className={ `select-value ${ selectedOption ? "" : "placeholder" }` }>
+				{ label && <span id={ labelId } className='select-label'>{ label }</span> }
+				<span id={ valueId } className={ `select-value ${ selectedOption ? "" : "placeholder" }` }>
 					{ selectedOption ? (selectedOption.props.label ?? selectedOption.props.children) : placeholder }
 				</span>
 				<IcapIcon icon='down-arrow' size='1em' className='select-chevron'/>

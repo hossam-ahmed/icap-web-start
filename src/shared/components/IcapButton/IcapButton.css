@@ -4,8 +4,13 @@
 
 @layer components {
     .icap-button {
-        /* Transparent border on every button, so outlined and filled buttons have the same size */
-        @apply p-3 min-w-[100px] outline-0 relative rounded-default isolate overflow-hidden border border-transparent;
+        /*
+         * Fixed height per size (md here: 37px) with content centered, so icons or line-heights inside
+         * never change the button's height. Padding is horizontal only.
+         * Transparent border on every button, so outlined and filled buttons have the same size.
+         */
+        @apply inline-flex items-center justify-center h-[37px] px-3 min-w-[100px] outline-0 relative rounded-default isolate
+               overflow-hidden border border-transparent;
 
         /*
          * normalize.css gives every <span> a fixed color and font-size, so icons (IcapIcon is a span) and
@@ -14,6 +19,23 @@
         & span {
             color: inherit;
             font-size: inherit;
+        }
+
+        /*
+         * Sizes. md is the base above (37px, 14px text), so it adds no class.
+         * Pixel values on purpose: the root font size is 14px, so rem-based utilities would come out smaller.
+         */
+        &.btn-sm {
+            @apply h-[30px] px-[12px] min-w-[72px] text-[12px] rounded-xl;
+        }
+
+        &.btn-lg {
+            @apply h-[48px] px-[24px] min-w-[128px] text-[16px];
+        }
+
+        /* Icon only: a square as tall as the size (30 / 37 / 48px) */
+        &.icon-only {
+            @apply aspect-square min-w-0 px-0;
         }
 
         /* Shadow tint; each variant sets its own */

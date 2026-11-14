@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IcapOption, IcapSelect } from "@shared/components/IcapSelect";
 import { IcapAmount } from "@shared/components/IcapAmount";
+import { IcapInput } from "@shared/components/IcapInput";
 import { Callout, DocPage, DocSection, Example, InlineCode, type PropDoc, PropsTable } from "../doc-kit/DocKit.tsx";
 
 const selectProps: PropDoc[] = [
@@ -31,9 +32,14 @@ const selectProps: PropDoc[] = [
 		description: "Called when focus leaves the select. For form libraries (touched state)."
 	},
 	{
+		name       : "label",
+		type       : "ReactNode",
+		description: "Floating label inside the trigger, styled like IcapInput's: rests in the middle while nothing is selected (and there's no placeholder), floats to the top only once an option is picked (not on focus or open, unlike IcapInput). With a placeholder it stays at the top."
+	},
+	{
 		name       : "placeholder",
 		type       : "ReactNode",
-		description: "Shown in the trigger when nothing is selected."
+		description: "Shown in the trigger when nothing is selected. With a label, the label stays at the top."
 	},
 	{
 		name       : "variant",
@@ -124,6 +130,32 @@ export const IcapSelectDocs = () => {
 							</IcapSelect>
 						)) }
 					</div>
+				</Example>
+			</DocSection>
+
+			<DocSection title='Floating label'>
+				<Example
+					title='Label & placeholder'
+					description='Styled like IcapInput (shown next to one for comparison), but the label floats only once an option is picked: opening or focusing the select leaves it in place.'
+					contentClassName='grid grid-cols-1 sm:grid-cols-2 gap-4 pb-40'
+					code={ `
+<IcapSelect label="Account type" variant="transparent-outlined" className="w-full">…</IcapSelect>
+<IcapSelect label="Account type" defaultValue="cash" variant="transparent-outlined" className="w-full">…</IcapSelect>
+<IcapSelect label="Account type" placeholder="Choose one" variant="transparent-outlined" className="w-full">…</IcapSelect>
+<IcapInput label="Username" />` }>
+					<IcapSelect label='Account type' variant='transparent-outlined' className='w-full'>
+						<IcapOption value='cash'>Cash</IcapOption>
+						<IcapOption value='margin'>Margin</IcapOption>
+					</IcapSelect>
+					<IcapInput label='Username'/>
+					<IcapSelect label='Account type' defaultValue='cash' variant='transparent-outlined' className='w-full'>
+						<IcapOption value='cash'>Cash</IcapOption>
+						<IcapOption value='margin'>Margin</IcapOption>
+					</IcapSelect>
+					<IcapSelect label='Account type' placeholder='Choose one' variant='alternate' className='w-full'>
+						<IcapOption value='cash'>Cash</IcapOption>
+						<IcapOption value='margin'>Margin</IcapOption>
+					</IcapSelect>
 				</Example>
 			</DocSection>
 

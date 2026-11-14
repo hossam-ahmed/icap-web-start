@@ -6,7 +6,7 @@
 
         /* Donut: a thin ring that thickens into a solid band (with a white hole) when checked */
         .radio-input {
-            @apply appearance-none m-0 shrink-0 size-5 cursor-pointer rounded-full border-2 bg-white outline-0;
+            @apply appearance-none m-0 shrink-0 size-6 cursor-pointer rounded-full border-2 bg-white outline-0;
             transition: border-width 0.2s ease, border-color 0.2s ease;
 
             &:checked {
@@ -14,7 +14,7 @@
             }
 
             &:focus-visible {
-                @apply outline-3 outline-offset-2;
+                @apply outline-2 outline-offset-2;
             }
         }
 

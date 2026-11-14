@@ -7,6 +7,7 @@ import { IcapBoxPanelDocs } from "./IcapBoxPanelDocs.tsx";
 import { IcapCardDocs } from "./IcapCardDocs.tsx";
 import { IcapCheckboxDocs } from "./IcapCheckboxDocs.tsx";
 import { IcapIconDocs } from "./IcapIconDocs.tsx";
+import { IcapInputDocs } from "./IcapInputDocs.tsx";
 import { IcapRadioDocs } from "./IcapRadioDocs.tsx";
 import { IcapSelectDocs } from "./IcapSelectDocs.tsx";
 import { IcapTableDocs } from "./IcapTableDocs.tsx";
@@ -35,6 +36,7 @@ export const componentDocs: ComponentDocEntry[] = [
 	{ id: "icap-card", name: "IcapCard", page: IcapCardDocs },
 	{ id: "icap-checkbox", name: "IcapCheckbox", page: IcapCheckboxDocs },
 	{ id: "icap-icon", name: "IcapIcon", page: IcapIconDocs },
+	{ id: "icap-input", name: "IcapInput", page: IcapInputDocs },
 	{ id: "loader", name: "IcapLoader", page: LoaderDocs },
 	{ id: "modal", name: "IcapModal", page: ModalDocs },
 	{ id: "icap-radio", name: "IcapRadio", page: IcapRadioDocs },

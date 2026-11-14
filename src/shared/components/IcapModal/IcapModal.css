@@ -78,8 +78,7 @@
         }
 
         .modal-close {
-            @apply absolute top-3 end-3 inline-flex items-center justify-center size-9 p-0 border-0 rounded-full
-                   bg-neutral-400 text-neutral-600 outline-0 transition-colors;
+            @apply absolute top-3 end-3 rounded-full;
 
             svg {
                 @apply size-5;
