@@ -69,6 +69,7 @@ export type IcapOptionProps = Omit<ComponentProps<"button">, "value" | "type" | 
 	label?: ReactNode;
 	/** The option can't be selected. */
 	disabled?: boolean;
+	showSelectedIndicator?: boolean;
 };
 
 type SelectContextValue = {
@@ -82,7 +83,7 @@ const SelectContext = createContext<SelectContextValue | null>(null);
  * One option of an `IcapSelect`. Its children are the option's template (any content);
  * the same content is shown in the trigger when selected, unless `label` is given.
  */
-export const IcapOption = ({ value, children, label: _label, disabled, className = "", ...props }: IcapOptionProps) => {
+export const IcapOption = ({ value, children, label: _label, disabled, showSelectedIndicator = true, className = "", ...props }: IcapOptionProps) => {
 	const ctx = use(SelectContext);
 	if (!ctx) throw new Error("<IcapOption> must be rendered inside <IcapSelect>.");
 	const selected = ctx.selectedValue === value;
@@ -96,9 +97,7 @@ export const IcapOption = ({ value, children, label: _label, disabled, className
 				onClick={ () => ctx.select(value) }
 				{ ...props }>
 				<span className='select-option-content'>{ children }</span>
-				<svg className='select-option-check' viewBox='0 0 16 16' aria-hidden='true' focusable='false'>
-					<path d='M3.5 8.5l3 3 6-7' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
-				</svg>
+				{ showSelectedIndicator && <span className='select-option-indicator' aria-hidden='true'/>}
 			</button>
 		</li>
 	);

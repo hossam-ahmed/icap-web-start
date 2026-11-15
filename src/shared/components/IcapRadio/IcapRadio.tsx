@@ -4,6 +4,8 @@ import "./IcapRadio.css";
 export type IcapRadioVariants = "primary" | "secondary" | "alternate";
 export type IcapRadioProps = Omit<ComponentProps<"input">, "type" | "children"> & {
 	variant?: IcapRadioVariants;
+	/** Draws a bordered box around the radio and its label; the border takes the variant color when selected. Default: `false`. */
+	boxed?: boolean;
 	/** Optional label rendered next to the radio; clicking it selects the radio. */
 	children?: ReactNode;
 };
@@ -16,11 +18,12 @@ export type IcapRadioProps = Omit<ComponentProps<"input">, "type" | "children"> 
 export const IcapRadio = ({
 	variant = "primary",
 	className = "",
+	boxed = false,
 	children,
 	...props
 }: IcapRadioProps) => {
 	return (
-		<label className={ `icap-radio ${ variant }` }>
+		<label className={ `icap-radio ${ variant } ${ boxed ? "boxed" : "" }` }>
 			<input type='radio' className={ `radio-input ${ className }` } { ...props }/>
 			{ children && <span className='radio-label'>{ children }</span> }
 		</label>

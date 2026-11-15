@@ -3,6 +3,7 @@ import { AmountDocs } from "./AmountDocs.tsx";
 import { ButtonDocs } from "./ButtonDocs.tsx";
 import { DividerDocs } from "./DividerDocs.tsx";
 import { IcapAccountSelectorDocs } from "./IcapAccountSelectorDocs.tsx";
+import { IcapBooleanQuestionDocs } from "./IcapBooleanQuestionDocs.tsx";
 import { IcapBoxPanelDocs } from "./IcapBoxPanelDocs.tsx";
 import { IcapCardDocs } from "./IcapCardDocs.tsx";
 import { IcapCheckboxDocs } from "./IcapCheckboxDocs.tsx";
@@ -32,6 +33,7 @@ export const componentDocs: ComponentDocEntry[] = [
 	{ id: "icap-account-selector", name: "IcapAccountSelector", page: IcapAccountSelectorDocs },
 	{ id: "amount", name: "IcapAmount", page: AmountDocs },
 	{ id: "button", name: "IcapButton", page: ButtonDocs },
+	{ id: "icap-boolean-question", name: "IcapBooleanQuestion", page: IcapBooleanQuestionDocs },
 	{ id: "icap-box-panel", name: "IcapBoxPanel", page: IcapBoxPanelDocs },
 	{ id: "icap-card", name: "IcapCard", page: IcapCardDocs },
 	{ id: "icap-checkbox", name: "IcapCheckbox", page: IcapCheckboxDocs },

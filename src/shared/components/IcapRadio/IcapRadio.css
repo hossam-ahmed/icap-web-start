@@ -2,9 +2,10 @@
 
 @layer components {
     .icap-radio {
-        @apply inline-flex items-center gap-2 cursor-pointer select-none;
+        @apply inline-flex items-center gap-2 cursor-pointer select-none rounded-default;
 
         /* Donut: a thin ring that thickens into a solid band (with a white hole) when checked */
+
         .radio-input {
             @apply appearance-none m-0 shrink-0 size-6 cursor-pointer rounded-full border-2 bg-white outline-0;
             transition: border-width 0.2s ease, border-color 0.2s ease;
@@ -26,6 +27,7 @@
             }
 
             /* `border-primary` maps to --border-color-primary (beige), so use the palette color directly */
+
             &:checked {
                 @apply border-(--color-primary);
             }
@@ -67,7 +69,34 @@
             }
         }
 
+        /* Boxed: a bordered box around radio + label; the border takes the variant color when selected */
+
+        &.boxed {
+            @apply px-4 py-2 bg-white border-default rounded-default transition-colors;
+
+            &:not(:has(.radio-input:disabled)) {
+                &:not(:has(.radio-input:checked)) {
+                    &:hover {
+                        @apply bg-neutral-50 cursor-pointer;
+                    }
+                }
+            }
+        }
+
+        &:has(.radio-input:checked) {
+            @apply bg-primary-100 border-primary-300;
+        }
+
+       /* &.primary:has(.radio-input:checked) {
+            @apply bg-secondary-100 border-b-secondary-200;
+        }*/
+
+        /*&.boxed.alternate:has(.radio-input:checked) {
+            @apply bg-alternate-400;
+        }*/
+
         /* Disabled: driven by the native attribute */
+
         &:has(.radio-input:disabled) {
             @apply cursor-not-allowed opacity-50;
 
@@ -78,7 +107,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .icap-radio .radio-input {
+        .icap-radio .radio-input,
+        .icap-radio.boxed {
             transition: none;
         }
     }

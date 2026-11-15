@@ -125,11 +125,11 @@
             @apply min-w-0;
         }
 
-        .select-option-check {
-            @apply shrink-0 size-4 text-secondary opacity-0;
+        .select-option-indicator {
+            @apply shrink-0 size-5 rounded-full border-5 border-secondary bg-white opacity-0;
         }
 
-        .select-option.selected .select-option-check {
+        .select-option.selected .select-option-indicator {
             @apply opacity-100;
         }
     }

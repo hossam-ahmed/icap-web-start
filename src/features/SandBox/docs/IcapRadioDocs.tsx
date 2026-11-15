@@ -10,6 +10,12 @@ const radioProps: PropDoc[] = [
 		description: "Color of the ring."
 	},
 	{
+		name       : "boxed",
+		type       : "boolean",
+		default    : "false",
+		description: "Draws a bordered box around the radio and its label; the border takes the variant color when selected."
+	},
+	{
 		name       : "children",
 		type       : "ReactNode",
 		description: "Optional label shown next to the radio. It is wrapped in the same <label>, so clicking it selects the radio."
@@ -66,6 +72,23 @@ export const IcapRadioDocs = () => {
 						<IcapRadio variant='alternate' name='alternate-demo' defaultChecked>Selected</IcapRadio>
 						<IcapRadio variant='alternate' name='alternate-demo'>Unselected</IcapRadio>
 					</div>
+				</Example>
+			</DocSection>
+
+			<DocSection title='Boxed'>
+				<Example
+					title='boxed'
+					description='A bordered box around each choice; the selected one takes the variant color.'
+					contentClassName='flex flex-wrap gap-3'
+					code={ `
+<IcapRadio name="boxed-demo" boxed defaultChecked>Yes</IcapRadio>
+<IcapRadio name="boxed-demo" boxed>No</IcapRadio>
+<IcapRadio variant="secondary" name="boxed-demo-2" boxed defaultChecked>Yes</IcapRadio>
+<IcapRadio variant="secondary" name="boxed-demo-2" boxed>No</IcapRadio>` }>
+					<IcapRadio name='boxed-demo' boxed defaultChecked>Yes</IcapRadio>
+					<IcapRadio name='boxed-demo' boxed>No</IcapRadio>
+					<IcapRadio variant='secondary' name='boxed-demo-2' boxed defaultChecked>Yes</IcapRadio>
+					<IcapRadio variant='secondary' name='boxed-demo-2' boxed>No</IcapRadio>
 				</Example>
 			</DocSection>
 
