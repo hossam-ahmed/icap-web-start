@@ -1,0 +1,28 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    /* Question on the start side, answers on the end side; wraps under the question on narrow widths */
+    .icap-boolean-question {
+        @apply flex flex-wrap items-center gap-4 p-4;
+        transition: border-color 0.2s ease;
+
+        &.invalid {
+            @apply border-error;
+        }
+
+        .question-content {
+            @apply flex-1 min-w-48 text-neutral-800;
+            line-height: 1.45;
+        }
+
+        .options-list {
+            @apply flex items-center gap-2 m-0 p-0 list-none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-boolean-question {
+            transition: none;
+        }
+    }
+}

@@ -1,0 +1,115 @@
+@reference "@styles/tailwind/index.css";
+
+@layer components {
+    /*
+     * Sizes are in em, so a text-* class on the wrapper scales the whole field.
+     * Label: rests where the text goes, floats to the top (smaller) on focus or when there's a value.
+     */
+    .icap-input {
+        @apply relative flex w-full bg-white border-default rounded-default cursor-text;
+        transition: border-color .2s ease, box-shadow .2s ease;
+
+        &:hover:not(:has(.input-control:disabled)) {
+            @apply border-primary-400;
+        }
+
+        &:focus-within {
+            @apply border-primary-700;
+            box-shadow: 0 0 0 3px var(--color-primary-200);
+        }
+
+        &.invalid {
+            @apply border-error;
+
+            &:focus-within {
+                box-shadow: 0 0 0 3px var(--color-error-100);
+            }
+        }
+
+        &:has(.input-control:disabled) {
+            @apply opacity-50 cursor-not-allowed;
+        }
+
+        /* ---------- control ---------- */
+
+        .input-control {
+            @apply w-full min-w-0 m-0 bg-transparent border-0 rounded-default outline-0 text-color-default;
+            font: inherit;
+            line-height: 1.4;
+            padding: 1.05em 1.15em;
+
+            &::placeholder {
+                @apply text-neutral-400;
+                opacity: 1;
+            }
+
+            &:disabled {
+                @apply cursor-not-allowed;
+            }
+        }
+
+        /* Room at the top for the floated label (kept even while it rests, so the text never jumps) */
+        &.has-label .input-control {
+            padding-top: 1.6em;
+            padding-bottom: .5em;
+        }
+
+        &.multiline .input-control {
+            @apply resize-y;
+            min-height: 6em;
+        }
+
+        /* ---------- label ---------- */
+
+        .input-label {
+            @apply absolute max-w-[calc(100%-2.3em)] truncate text-neutral-500 pointer-events-none;
+            /* Lined up with the text inside the control */
+            inset-inline-start: 1.15em;
+            /* normalize.css doesn't touch label, but keep it explicit: same font and line height as the text */
+            font-size: 1em;
+            line-height: 1.4;
+            /* Resting: vertically centered in a single-line input */
+            top: 50%;
+            translate: 0 -50%;
+            transform-origin: 0 0;
+            transition: top .2s ease, translate .2s ease, font-size .2s ease, inset-inline-start .2s ease, color .2s ease;
+        }
+
+        /* Resting in a textarea: on the first text line, not the middle of the box */
+        &.multiline .input-label {
+            top: 1.05em;
+            translate: 0 0;
+        }
+
+        &.multiline.has-label .input-label {
+            top: 1.6em;
+        }
+
+        /* Floated: on focus, when there's a value (placeholder no longer shown), or when a placeholder is set */
+        /* .has-label raises specificity above the textarea resting rules, so floating always wins */
+        &.has-label .input-control:focus ~ .input-label,
+        &.has-label .input-control:not(:placeholder-shown) ~ .input-label,
+        &.has-label.has-placeholder .input-label {
+            font-size: .75em;
+            /* Field-relative offsets written in the label's own (0.75x) em, so they don't shrink with it */
+            top: calc(.55em / .75);
+            inset-inline-start: calc(1.15em / .75);
+            translate: 0 0;
+        }
+
+        .input-control:focus ~ .input-label {
+            @apply text-neutral-600;
+        }
+
+        &.invalid .input-label {
+            @apply text-error;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .icap-input,
+        .icap-input .input-label {
+            transition: none;
+        }
+    }
+}
